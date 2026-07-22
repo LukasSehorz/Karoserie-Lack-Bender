@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lack & Karosserie Benda – Unfallreparatur, Karosserie & Industrielackierung in Mühldorf am Inn</title>
+  <meta name="description" content="Fachbetrieb für Unfallreparatur, Karosserie und Industrielackierung in Mühldorf am Inn. Von der Fahrzeugbesichtigung bis zur fertigen Reparatur – alles aus einer Hand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=17">
+</head>
+<body>
+
+  <!-- ================= HEADER / NAVIGATION ================= -->
+  <header class="site-header dark">
+    <div class="container header-3col">
+      <nav class="nav-left">
+        <a href="#schaden-selektor">Unfall gehabt?</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
+      </nav>
+      <a href="index.html" class="header-logo" aria-label="Zur Startseite">
+        <img src="assets/img/logo-frei.png" alt="Benda Lack &amp; Karosserie">
+      </a>
+      <div class="nav-right">
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+        <a href="#schaden-selektor" class="btn btn-primary">Unfallschaden melden</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= 1. HERO – SCHADEN-ASSISTENT (4 Schritte) ================= -->
+    <section class="hero-select" id="schaden-selektor">
+      <div class="container">
+        <div class="wizard" id="wizard">
+
+          <!-- Fortschritt -->
+          <div class="wz-progress">
+            <div class="wz-bar"><span id="wzBar" style="width:25%"></span></div>
+            <div class="wz-count">Schritt <b id="wzCur">1</b> von 4</div>
+          </div>
+
+          <!-- SCHRITT 1: Bereich -->
+          <div class="wz-step" data-step="1">
+            <div class="hs-head">
+              <h1>Was ist an Ihrem Auto beschädigt?</h1>
+              <p class="lead">Wählen Sie den betroffenen Bereich.</p>
+            </div>
+
+            <div class="car-select">
+              <div class="car-row">
+                <button type="button" class="car-seg" data-part="Front" style="--seg:url('assets/img/auto-seite-front.png')">
+                  <img src="assets/img/auto-seite-front.png" alt="Vorderer Bereich">
+                </button>
+                <button type="button" class="car-seg" data-part="Mitte" style="--seg:url('assets/img/auto-seite-mitte.png')">
+                  <img src="assets/img/auto-seite-mitte.png" alt="Mittlerer Bereich">
+                </button>
+                <button type="button" class="car-seg" data-part="Heck" style="--seg:url('assets/img/auto-seite-heck.png')">
+                  <img src="assets/img/auto-seite-heck.png" alt="Hinterer Bereich">
+                </button>
+              </div>
+              <div class="car-labels">
+                <div class="seg-label">
+                  <span class="lbl">Front</span>
+                  <div class="thumb"><img src="assets/img/auto-front.png" alt="Frontansicht"></div>
+                </div>
+                <div class="seg-label">
+                  <span class="lbl">Mitte</span>
+                </div>
+                <div class="seg-label">
+                  <span class="lbl">Heck</span>
+                  <div class="thumb"><img src="assets/img/auto-heck.png" alt="Heckansicht"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCHRITT 2: Unfallart -->
+          <div class="wz-step" data-step="2" hidden>
+            <div class="hs-head">
+              <h2>Wie ist es passiert?</h2>
+              <p class="lead">Wählen Sie die Unfallart.</p>
+            </div>
+            <div class="opt-grid">
+              <button type="button" class="opt-card" data-val="Auffahrunfall">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.9 1.3L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span>
+                <span class="opt-lbl">Auffahrunfall</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Parkrempler / angefahren">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span>
+                <span class="opt-lbl">Parkrempler / angefahren</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Selbst verursacht">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
+                <span class="opt-lbl">Selbst verursacht</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Wildschaden">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg></span>
+                <span class="opt-lbl">Wildschaden</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Hagel / Unwetter">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v2"/><path d="M8 14v2"/><path d="M12 16v2"/><path d="M8 20h.01"/><path d="M16 20h.01"/><path d="M12 22h.01"/></svg></span>
+                <span class="opt-lbl">Hagel / Unwetter</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Steinschlag / Glasschaden">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M13 5l-1.6 4.2 2.6 1.1-2.1 3 1.5 4.2"/><path d="M11.4 9.2 8 10.4"/></svg></span>
+                <span class="opt-lbl">Steinschlag / Glasschaden</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Marderschaden">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h5"/><path d="M16 12h5"/><path d="M8 12l2.4-2M8 12l2.4 2"/><path d="M16 12l-2.4-2M16 12l-2.4 2"/></svg></span>
+                <span class="opt-lbl">Marderschaden</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Rost / Durchrostung">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="8.5" cy="9" r=".7" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/><circle cx="9.5" cy="15" r=".7" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="15" cy="14.5" r=".7" fill="currentColor" stroke="none"/></svg></span>
+                <span class="opt-lbl">Rost / Durchrostung</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Lack / Kratzer entfernen">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.5 1.4 1.4.5-1.4.5-.5 1.4-.5-1.4-1.4-.5 1.4-.5z"/><path d="M5 14.5l.45 1.25 1.25.45-1.25.45L5 18.4l-.45-1.25L3.3 16.7l1.25-.45z"/></svg></span>
+                <span class="opt-lbl">Lack / Kratzer entfernen</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Vandalismus">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h.01"/><path d="M7 5h.01"/><path d="M11 7h.01"/><path d="M3 7h.01"/><path d="M7 9h.01"/><path d="M3 11h.01"/><rect width="4" height="4" x="15" y="5"/><path d="m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2"/><path d="M13 14h8"/></svg></span>
+                <span class="opt-lbl">Vandalismus</span>
+              </button>
+              <button type="button" class="opt-card" data-val="Sonstiges">
+                <span class="opt-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+                <span class="opt-lbl">Sonstiges</span>
+              </button>
+            </div>
+            <div class="wz-nav">
+              <button type="button" class="wz-back">← Zurück</button>
+            </div>
+          </div>
+
+          <!-- SCHRITT 3: Was genau + Fahrbereit -->
+          <div class="wz-step" data-step="3" hidden>
+            <div class="hs-head">
+              <h2>Was genau ist beschädigt?</h2>
+              <p class="lead">Mehrfachauswahl möglich – ergänzen Sie gern Details.</p>
+            </div>
+            <div class="wz-card">
+              <div class="wz-field">
+                <span class="wz-flabel">Betroffene Teile <em>(Mehrfachauswahl)</em></span>
+                <div class="chip-grid" id="damageList"><!-- wird per JS je nach Bereich gefüllt --></div>
+              </div>
+              <div class="wz-field">
+                <label class="wz-flabel" for="damageNote">Weitere Details</label>
+                <textarea id="damageNote" class="wz-textarea" rows="3" placeholder="z. B. „mein Außenspiegel ist abgefahren“, „Auto verliert Öl“ …"></textarea>
+              </div>
+              <div class="wz-field">
+                <span class="wz-flabel">Ist Ihr Auto noch fahrbereit?</span>
+                <div class="seg-choice" id="fahrbereit">
+                  <button type="button" data-val="Ja">Ja</button>
+                  <button type="button" data-val="Nein">Nein</button>
+                  <button type="button" data-val="Unsicher">Unsicher</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="wz-nav">
+              <button type="button" class="wz-back">← Zurück</button>
+              <button type="button" class="btn btn-primary wz-next">Weiter</button>
+            </div>
+          </div>
+
+          <!-- SCHRITT 4: Kontakt + Fotos -->
+          <div class="wz-step" data-step="4" hidden>
+            <div class="hs-head">
+              <h2>Fast geschafft – Ihre Kontaktdaten</h2>
+              <p class="lead">Wir prüfen Ihre Angaben und melden uns schnellstmöglich zurück.</p>
+            </div>
+
+            <div class="wz-card">
+              <div class="wz-recap">
+                <span class="wz-flabel">Ihre Angaben</span>
+                <div class="wz-summary" id="wzSummary"></div>
+              </div>
+
+              <form class="formular wz-form" action="#" method="post">
+                <div class="reihe">
+                  <div class="feld"><label for="w-vorname">Vorname</label><input id="w-vorname" type="text" autocomplete="given-name"></div>
+                  <div class="feld"><label for="w-nachname">Nachname</label><input id="w-nachname" type="text" autocomplete="family-name"></div>
+                </div>
+                <div class="reihe">
+                  <div class="feld"><label for="w-tel">Telefonnummer</label><input id="w-tel" type="tel" autocomplete="tel"></div>
+                  <div class="feld"><label for="w-mail">E-Mail</label><input id="w-mail" type="email" autocomplete="email"></div>
+                </div>
+                <div class="feld">
+                  <span class="wz-flabel">Fotos vom Schaden</span>
+                  <label class="dropzone" for="w-fotos" id="dropzone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="m8 17 4-4 4 4"/><path d="M20 16.7A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/></svg>
+                    <span class="dz-main"><b>Fotos auswählen</b> oder hierher ziehen</span>
+                    <small>Mehrere Bilder möglich – das hilft uns bei der Einschätzung.</small>
+                  </label>
+                  <input id="w-fotos" class="dz-input" type="file" multiple accept="image/*">
+                </div>
+                <div class="checkbox-reihe">
+                  <input id="w-ds" type="checkbox" required>
+                  <label for="w-ds">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
+                </div>
+                <p class="wz-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unverbindlich &amp; kostenlos – wir melden uns schnellstmöglich zurück.</p>
+                <div class="wz-nav">
+                  <button type="button" class="wz-back">← Zurück</button>
+                  <button type="submit" class="btn btn-primary">Schaden absenden</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 2. UNSERE LEISTUNGEN ================= -->
+    <section id="leistungen" class="leistungen-sec">
+      <div class="container deco">
+        <div class="sec-head-left">
+          <span class="eyebrow">Unser Können</span>
+          <h2>Unsere Leistungen</h2>
+          <p class="lead">Von der Unfallinstandsetzung bis zur Feinarbeit – alles aus einer Hand.</p>
+        </div>
+
+        <div class="lst-layout">
+          <!-- Liste links -->
+          <div class="lst-list" role="tablist" aria-label="Leistungen">
+            <button class="lst-item active" data-idx="0" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.6 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></span>
+              <span class="lst-name">Außenhaut-Instandsetzung</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="1" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg></span>
+              <span class="lst-name">Karosserievermessung</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="2" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+              <span class="lst-name">Karosserieinstandsetzung</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="3" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
+              <span class="lst-name">Instandsetzung nach Herstellervorgaben</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="4" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg></span>
+              <span class="lst-name">Fahrassistenzsysteme</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="5" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg></span>
+              <span class="lst-name">Klima-Service</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="6" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8.5c0-.7.4-1.3 1.1-1.6l1.8-.8A11 11 0 0 1 12 5.3c1.4 0 2.8.3 4.1.8l1.8.8c.7.3 1.1.9 1.1 1.6V14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M12 6v10"/></svg></span>
+              <span class="lst-name">Autoglas – Reparatur &amp; Austausch</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="7" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.3"/><circle cx="12" cy="7.2" r=".7" fill="currentColor" stroke="none"/><circle cx="16.1" cy="10.2" r=".7" fill="currentColor" stroke="none"/><circle cx="14.5" cy="15.1" r=".7" fill="currentColor" stroke="none"/><circle cx="9.5" cy="15.1" r=".7" fill="currentColor" stroke="none"/><circle cx="7.9" cy="10.2" r=".7" fill="currentColor" stroke="none"/></svg></span>
+              <span class="lst-name">Komplettradmontage &amp; Felgenreparatur</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="lst-item" data-idx="8" type="button">
+              <span class="lst-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H10a6 6 0 0 1 0 14H6.5A2.5 2.5 0 0 1 4 16.5z"/><path d="M18 8.5h3"/><path d="M18 12h4"/><path d="M18 15.5h3"/></svg></span>
+              <span class="lst-name">Lichteinstellung</span>
+              <svg class="lst-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+
+          <!-- Detail rechts -->
+          <div class="lst-detail" id="lstDetail">
+            <article class="lst-panel active" data-idx="0">
+              <div class="lst-img"><img src="assets/img/leistung-aussenhaut.jpg" alt="Außenhaut-Instandsetzung mit GYS Dentstation Premium"></div>
+              <div class="lst-card">
+                <h3>Außenhaut-Instandsetzung</h3>
+                <p>Mit unserer GYS Dentstation Premium und unseren qualifizierten Mitarbeitern sind wir bestens gerüstet.</p>
+              </div>
+            </article>
+            <article class="lst-panel rev" data-idx="1">
+              <div class="lst-img"><img src="assets/img/leistung-vermessung.jpg" alt="Karosserievermessung"></div>
+              <div class="lst-card">
+                <h3>Karosserievermessung</h3>
+                <p>Unsere Karosserievermessung erfolgt nach Herstellervorgaben und garantiert eine qualitative Reparatur.</p>
+              </div>
+            </article>
+            <article class="lst-panel" data-idx="2">
+              <div class="lst-img"><img src="assets/img/leistung-instandsetzung.jpg" alt="Karosserieinstandsetzung – Richtbankarbeiten"></div>
+              <div class="lst-card">
+                <h3>Karosserieinstandsetzung</h3>
+                <p>Richtbankarbeiten zur Wiederherstellung einer intakten Fahrzeugkarosserie.</p>
+              </div>
+            </article>
+            <article class="lst-panel rev" data-idx="3">
+              <div class="lst-img"><img src="assets/img/leistung-herstellervorgaben.jpg" alt="Instandsetzung nach Herstellervorgaben"></div>
+              <div class="lst-card">
+                <h3>Instandsetzung nach Herstellervorgaben</h3>
+                <p>Bereits bei der Festlegung des Reparaturweges beachten wir den originalen Reparaturleitfaden und garantieren dadurch eine fachgerechte Instandsetzung.</p>
+              </div>
+            </article>
+            <article class="lst-panel" data-idx="4">
+              <div class="lst-img"><img src="assets/img/leistung-fahrassistenz.jpg" alt="Kalibrierung der Fahrerassistenzsysteme"></div>
+              <div class="lst-card">
+                <h3>Fahrassistenzsysteme</h3>
+                <p>Diagnose und Kalibrierung von Fahrerassistenzsystemen wie beispielsweise Notbremsassistent, Spurwechselassistent und die adaptive Geschwindigkeitsregelung.</p>
+              </div>
+            </article>
+            <article class="lst-panel rev" data-idx="5">
+              <div class="lst-img"><img src="assets/img/leistung-klima.jpg" alt="Klima-Service"></div>
+              <div class="lst-card">
+                <h3>Klima-Service</h3>
+                <p>Wartung und Reparatur des Klimaanlagensystems durch unsere geschulten Fachkräfte unter Einhaltung der Chemikalien-Klimaschutzverordnung.</p>
+              </div>
+            </article>
+            <article class="lst-panel" data-idx="6">
+              <div class="lst-img"><img src="assets/img/leistung-autoglas.jpg" alt="Autoglas – Reparatur und Austausch"></div>
+              <div class="lst-card">
+                <h3>Autoglas – Reparatur &amp; Austausch</h3>
+                <p>Austausch und Reparatur an Front-, Seiten- und Heckscheiben. Schnelle und unkomplizierte Abwicklung mit Ihrer Versicherung.</p>
+              </div>
+            </article>
+            <article class="lst-panel rev" data-idx="7">
+              <div class="lst-img"><img src="assets/img/leistung-rad.jpg" alt="Komplettradmontage und Felgenreparatur"></div>
+              <div class="lst-card">
+                <h3>Komplettradmontage &amp; Felgenreparatur</h3>
+                <p>Radwechsel, Reifenmontage und Reparatur von lackierten Alufelgen mit speziellem Mattierungsverfahren.</p>
+              </div>
+            </article>
+            <article class="lst-panel" data-idx="8">
+              <div class="lst-img"><img src="assets/img/leistung-licht.jpg" alt="Lichteinstellung"></div>
+              <div class="lst-card">
+                <h3>Lichteinstellung</h3>
+                <p>Einstellung von modernen Lichtsystemen wie Voll-LED, Matrix oder anderen dynamischen Lichtassistenten.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 3. SO LÄUFT DIE REPARATUR AB ================= -->
+    <section id="ablauf" class="ablauf">
+      <div class="container">
+        <h2>So läuft die Reparatur ab</h2>
+        <p class="lead">Vom ersten Kontakt bis zur Fahrzeugübergabe begleiten wir Sie Schritt für Schritt.</p>
+      </div>
+
+      <div class="ablauf-panels">
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-1.png" alt="Schaden per Smartphone fotografieren und melden">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 1</span>
+            <h3>Schaden melden</h3>
+            <p>Kurz Kontakt aufnehmen oder Bilder senden.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-2.png" alt="Mitarbeiter besichtigt den Schaden am Fahrzeug">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 2</span>
+            <h3>Fahrzeug besichtigen</h3>
+            <p>Wir schauen uns den Schaden gemeinsam mit Ihnen an.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-3.png" alt="Mitarbeiter erstellt den Kostenvoranschlag am Computer">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 3</span>
+            <h3>Kostenvoranschlag erhalten</h3>
+            <p>Sie erhalten eine transparente Kalkulation der Reparatur.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-4.png" alt="Fertig repariertes und lackiertes Fahrzeug">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 4</span>
+            <h3>Reparatur durchführen lassen</h3>
+            <p>Karosserie und Lackierung aus einer Hand.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 3. VIDEO ================= -->
+    <section id="vorher-nachher" class="video-section">
+      <div class="container">
+        <div class="video-frame">
+          <video id="loesungVideo" class="video-full" muted loop playsinline preload="metadata" poster="assets/img/leistung-instandsetzung.jpg">
+            <source src="assets/video/schaden-loesung.mp4" type="video/mp4">
+          </video>
+          <span class="vf-corner tl"></span>
+          <span class="vf-corner tr"></span>
+          <span class="vf-corner bl"></span>
+          <span class="vf-corner br"></span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 7. EIN BLICK IN UNSERE ARBEIT (GALERIE) ================= -->
+    <section id="galerie">
+      <div class="container">
+        <h2>Ein Blick in unsere Arbeit</h2>
+        <p class="lead">Einige Eindrücke aus unserem Arbeitsalltag.</p>
+
+        <div class="galerie">
+          <div class="platzhalter"><span class="ph-titel">Karosseriearbeiten</span></div>
+          <div class="platzhalter"><span class="ph-titel">Lackierkabine</span></div>
+          <div class="platzhalter"><span class="ph-titel">Fahrzeugvorbereitung</span></div>
+          <div class="platzhalter"><span class="ph-titel">Lackierer bei der Arbeit</span></div>
+          <div class="platzhalter"><span class="ph-titel">Detail Lackoberfläche</span></div>
+          <div class="platzhalter"><span class="ph-titel">Fertiges Fahrzeug</span></div>
+          <div class="platzhalter"><span class="ph-titel">Industrielackierung</span></div>
+          <div class="platzhalter"><span class="ph-titel">Team</span></div>
+        </div>
+        <p class="ph-hinweis" style="margin-top:16px;">Große Bilder, keine Miniaturbilder, maximal 8 bis 10 Bilder.</p>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 4. KONTAKT ================= -->
+    <section id="kontakt">
+      <div class="container">
+        <h2>Kontakt</h2>
+        <p class="lead">Sie haben Fragen oder möchten einen Termin vereinbaren? Wir freuen uns auf Ihre Nachricht.</p>
+
+        <div class="kontakt-grid">
+          <!-- Kontaktdaten links -->
+          <div class="kontakt-daten">
+            <dl>
+              <div>
+                <dt>Telefon</dt>
+                <dd><a href="tel:+498631987077">+49 8631 987077</a></dd>
+              </div>
+              <div>
+                <dt>E-Mail</dt>
+                <dd><a href="mailto:Info@jb-color.de">Info@jb-color.de</a></dd>
+              </div>
+              <div>
+                <dt>Adresse</dt>
+                <dd>Lack &amp; Karosserie Benda GmbH &amp; Co. KG<br>Marie-Curie-Straße 5<br>84453 Mühldorf am Inn</dd>
+              </div>
+              <div>
+                <dt>Öffnungszeiten</dt>
+                <dd>
+                  <ul class="oeffnungszeiten">
+                    <li><span>Mo – Do</span><span>8:00 – 12:00 &amp; 13:00 – 17:00</span></li>
+                    <li><span>Fr – So</span><span>Geschlossen</span></li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Kontaktformular rechts -->
+          <div class="kontakt-formular">
+            <form class="formular" action="#" method="post">
+              <div class="reihe">
+                <div class="feld">
+                  <label for="k-vorname">Vorname</label>
+                  <input type="text" id="k-vorname" name="vorname" autocomplete="given-name">
+                </div>
+                <div class="feld">
+                  <label for="k-nachname">Nachname</label>
+                  <input type="text" id="k-nachname" name="nachname" autocomplete="family-name">
+                </div>
+              </div>
+              <div class="feld">
+                <label for="k-email">E-Mail</label>
+                <input type="email" id="k-email" name="email" autocomplete="email">
+              </div>
+              <div class="feld">
+                <label for="k-nachricht">Nachricht</label>
+                <textarea id="k-nachricht" name="nachricht"></textarea>
+              </div>
+              <div class="checkbox-reihe">
+                <input type="checkbox" id="k-datenschutz" name="datenschutz" required>
+                <label for="k-datenschutz">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
+              </div>
+              <div class="btn-gruppe">
+                <button type="submit" class="btn btn-primary">Nachricht senden</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Lack &amp; Karosserie Benda</h4>
+          <p style="color:#c7ccd1;">Fachbetrieb für Unfallreparatur, Karosserie und Industrielackierung in Mühldorf am Inn.</p>
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+498631987077">+49 8631 987077</a></li>
+            <li><a href="mailto:Info@jb-color.de">Info@jb-color.de</a></li>
+            <li>Marie-Curie-Straße 5<br>84453 Mühldorf am Inn</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Seiten</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="industrielackierung.html">Industrielackierung</a></li>
+            <li><a href="#schaden-selektor">Schaden melden</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-unten">
+        <span>© 2026 Lack &amp; Karosserie Benda GmbH &amp; Co. KG</span>
+        <span>
+          <a href="impressum.html">Impressum</a> ·
+          <a href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var wizard = document.getElementById('wizard');
+      if (!wizard) return;
+
+      var steps = Array.prototype.slice.call(wizard.querySelectorAll('.wz-step'));
+      var bar = document.getElementById('wzBar');
+      var curLabel = document.getElementById('wzCur');
+      var total = steps.length;
+      var current = 1;
+
+      var state = { area: '', unfallart: '', damages: [], note: '', fahrbereit: '' };
+
+      var DAMAGES = {
+        Front: ['Stoßstange vorne', 'Scheinwerfer', 'Motorhaube', 'Kühlergrill / Kühler', 'Frontscheibe', 'Fahrzeug verliert Flüssigkeit', 'Kratzer / Lackschaden'],
+        Mitte: ['Tür(en)', 'Außenspiegel', 'Seitenscheibe', 'Kotflügel', 'Schweller', 'Kratzer / Lackschaden'],
+        Heck:  ['Stoßstange hinten', 'Rücklicht', 'Heckklappe', 'Heckscheibe', 'Auspuff', 'Kratzer / Lackschaden']
+      };
+
+      function show(n) {
+        current = n;
+        steps.forEach(function (s) { s.hidden = (parseInt(s.dataset.step, 10) !== n); });
+        if (bar) bar.style.width = (n / total * 100) + '%';
+        if (curLabel) curLabel.textContent = n;
+        if (n === 3) buildDamages();
+        if (n === 4) buildSummary();
+        wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      /* Schritt 1: Bereich */
+      var segs = wizard.querySelectorAll('.car-seg');
+      var labels = wizard.querySelectorAll('.car-labels .seg-label');
+      segs.forEach(function (seg, i) {
+        seg.addEventListener('click', function () {
+          if (state.area !== seg.dataset.part) { state.damages = []; state.note = ''; }
+          state.area = seg.dataset.part;
+          segs.forEach(function (s) { s.classList.remove('selected'); });
+          labels.forEach(function (l) { l.classList.remove('active'); });
+          seg.classList.add('selected');
+          if (labels[i]) labels[i].classList.add('active');
+          setTimeout(function () { show(2); }, 260);
+        });
+      });
+
+      /* Schritt 2: Unfallart */
+      wizard.querySelectorAll('.opt-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+          state.unfallart = card.dataset.val;
+          wizard.querySelectorAll('.opt-card').forEach(function (c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          setTimeout(function () { show(3); }, 220);
+        });
+      });
+
+      /* Schritt 3: Schäden */
+      var damageList = document.getElementById('damageList');
+      function buildDamages() {
+        var items = DAMAGES[state.area] || DAMAGES.Front;
+        damageList.innerHTML = '';
+        items.forEach(function (name) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'chip' + (state.damages.indexOf(name) > -1 ? ' selected' : '');
+          b.textContent = name;
+          b.addEventListener('click', function () {
+            var idx = state.damages.indexOf(name);
+            if (idx > -1) { state.damages.splice(idx, 1); b.classList.remove('selected'); }
+            else { state.damages.push(name); b.classList.add('selected'); }
+          });
+          damageList.appendChild(b);
+        });
+      }
+      var note = document.getElementById('damageNote');
+      note.addEventListener('input', function () { state.note = note.value; });
+
+      wizard.querySelectorAll('#fahrbereit button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.fahrbereit = b.dataset.val;
+          wizard.querySelectorAll('#fahrbereit button').forEach(function (x) { x.classList.remove('selected'); });
+          b.classList.add('selected');
+        });
+      });
+
+      /* Schritt 4: Zusammenfassung */
+      function chip(label, val) {
+        if (!val) return '';
+        return '<span class="sum-chip"><b>' + label + ':</b> ' + val + '</span>';
+      }
+      function buildSummary() {
+        var el = document.getElementById('wzSummary');
+        var html = '';
+        html += chip('Bereich', state.area);
+        html += chip('Unfallart', state.unfallart);
+        if (state.damages.length) html += chip('Schaden', state.damages.join(', '));
+        if (state.fahrbereit) html += chip('Fahrbereit', state.fahrbereit);
+        if (state.note) html += chip('Notiz', state.note);
+        el.innerHTML = html;
+      }
+
+      /* Navigation */
+      wizard.querySelectorAll('.wz-back').forEach(function (b) {
+        b.addEventListener('click', function () { show(Math.max(1, current - 1)); });
+      });
+      wizard.querySelectorAll('.wz-next').forEach(function (b) {
+        b.addEventListener('click', function () { show(Math.min(total, current + 1)); });
+      });
+
+      /* Foto-Upload: Anzahl anzeigen */
+      var fileInput = document.getElementById('w-fotos');
+      var dz = document.getElementById('dropzone');
+      if (fileInput && dz) {
+        fileInput.addEventListener('change', function () {
+          var n = fileInput.files ? fileInput.files.length : 0;
+          var main = dz.querySelector('.dz-main');
+          if (n > 0) { dz.classList.add('has-files'); if (main) main.innerHTML = '<b>' + n + ' ' + (n === 1 ? 'Bild' : 'Bilder') + ' ausgewählt</b>'; }
+          else { dz.classList.remove('has-files'); if (main) main.innerHTML = '<b>Fotos auswählen</b> oder hierher ziehen'; }
+        });
+      }
+
+      /* Absenden */
+      var form = wizard.querySelector('.wz-form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          wizard.innerHTML = '<div class="wz-done"><div class="wz-check">✓</div>' +
+            '<h2>Vielen Dank – Ihre Anfrage ist eingegangen.</h2>' +
+            '<p class="lead">Wir prüfen Ihre Angaben und melden uns schnellstmöglich bei Ihnen zurück, um einen Termin zur Besichtigung zu vereinbaren.</p></div>';
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.lst-item');
+      var panels = document.querySelectorAll('.lst-panel');
+      var detail = document.getElementById('lstDetail');
+      if (!items.length) return;
+      items.forEach(function (item) {
+        item.addEventListener('click', function () {
+          var idx = item.dataset.idx;
+          items.forEach(function (i) { i.classList.toggle('active', i === item); });
+          panels.forEach(function (p) { p.classList.toggle('active', p.dataset.idx === idx); });
+          if (window.matchMedia('(max-width: 860px)').matches && detail) {
+            detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var vid = document.getElementById('loesungVideo');
+      if (!vid || !('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+            var p = vid.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            vid.pause();
+          }
+        });
+      }, { threshold: [0, 0.6, 1] });
+      io.observe(vid);
+    })();
+  </script>
+</body>
+</html>

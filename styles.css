@@ -1,0 +1,1462 @@
+/* =========================================================
+   Lack & Karosserie Benda – Grundgerüst (Struktur-Phase)
+   Reines HTML + CSS. Design folgt später.
+   Farben laut Leitfaden: Weiß, Anthrazit, Schwarz, Akzent Orange.
+   ========================================================= */
+
+:root {
+  --weiss: #ffffff;
+  --anthrazit: #2b2f33;
+  --schwarz: #111315;
+  --orange: #e8620c;
+  --grau-hell: #f4f5f6;
+  --grau-linie: #dcdee0;
+  --grau-text: #565b60;
+  --max-breite: 1200px;
+  --abstand: 24px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  color: var(--anthrazit);
+  background: var(--weiss);
+  line-height: 1.6;
+  /* Text immer linksbündig (Leitfaden) */
+  text-align: left;
+  overflow-x: hidden;
+}
+
+/* ---------- Grundtypografie ---------- */
+h1, h2, h3 {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  color: var(--schwarz); line-height: 1.2; margin: 0 0 0.4em;
+  letter-spacing: -.01em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; max-width: 60ch; }
+a { color: var(--orange); }
+
+.lead { font-size: 1.15rem; color: var(--grau-text); }
+
+/* ---------- Layout-Helfer ---------- */
+.container {
+  width: 100%;
+  max-width: var(--max-breite);
+  margin: 0 auto;
+  padding: 0 var(--abstand);
+}
+
+section { padding: 72px 0; }
+/* Wunsch: durchgehend weißer Hintergrund */
+section:nth-child(even) { background: var(--weiss); }
+
+.trenner { border: 0; border-top: 1px solid var(--grau-linie); margin: 0; }
+
+/* Zwei-Spalten (Text + Bild) */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.split .text { min-width: 0; }
+.split.bild-links .media { order: -1; }
+
+/* ---------- Bild-Platzhalter ---------- */
+.platzhalter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  background: repeating-linear-gradient(
+    45deg, #eceef0, #eceef0 12px, #e4e7ea 12px, #e4e7ea 24px
+  );
+  border: 2px dashed #b9bdc2;
+  border-radius: 8px;
+  color: #6b7176;
+  min-height: 280px;
+  padding: 24px;
+  font-size: 0.95rem;
+}
+.platzhalter::before {
+  content: "🖼";
+  font-size: 2rem;
+  line-height: 1;
+}
+.platzhalter .ph-titel { font-weight: 600; color: #4b5156; }
+.platzhalter .ph-hinweis { font-size: 0.8rem; color: #868c92; max-width: 32ch; }
+.platzhalter.gross { min-height: 420px; }
+.platzhalter.klein { min-height: 200px; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid var(--anthrazit);
+  font-size: 1rem;
+}
+.btn-primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+.btn-secondary { background: transparent; color: var(--anthrazit); }
+.btn-gruppe { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
+
+/* ---------- Header / Navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.96);
+  border-bottom: 1px solid var(--grau-linie);
+  backdrop-filter: saturate(180%) blur(6px);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: 16px;
+}
+.logo { font-weight: 700; color: var(--schwarz); text-decoration: none; font-size: 1.05rem; }
+.logo span { color: var(--orange); }
+.hauptnav { display: flex; gap: 22px; flex-wrap: wrap; }
+.hauptnav a { color: var(--anthrazit); text-decoration: none; font-size: 0.95rem; }
+.hauptnav a:hover { color: var(--orange); }
+.nav-cta { white-space: nowrap; padding: 10px 18px; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 88px 0; }
+.hero .platzhalter { min-height: 380px; }
+
+/* =========================================================
+   SPLIT-HERO – Startseite-Einstieg (links Unfall, rechts Industrie)
+   ========================================================= */
+/* Splash-Seite: kein Scrollen, volle Höhe */
+body.splash { overflow: hidden; height: 100vh; }
+
+.split-hero {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--schwarz);
+  padding: 0;
+}
+
+/* Header der Splash-Seite: Navigation links/rechts + zentriertes Logo */
+.splash-header {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 30;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: start;
+  gap: 20px;
+  padding: clamp(16px, 2.6vh, 28px) clamp(20px, 4vw, 48px) 0;
+  pointer-events: none;                         /* Panels bleiben klickbar */
+}
+.splash-header a, .sph-brand { pointer-events: auto; }
+.sph-nav { display: flex; gap: 26px; align-items: center; padding-top: 12px; }
+.sph-nav.sph-left { justify-self: start; }
+.sph-nav.sph-right { justify-self: end; }
+.sph-nav a { color: #e6e9ec; text-decoration: none; font-size: 1rem; font-weight: 500; white-space: nowrap; }
+.sph-nav a:hover { color: var(--orange); }
+.sph-brand { justify-self: center; display: flex; flex-direction: column; align-items: center; gap: 11px; }
+.sph-brand .brand-logo { height: clamp(42px, 5.6vh, 58px); }
+.sph-brand .brand-seals img { height: clamp(34px, 4.2vh, 44px); }
+
+/* Inhalt der linken Hälfte unter den Header schieben */
+.sh-panel.unfall .sh-content { padding-top: clamp(140px, 21vh, 188px); }
+
+/* (alte Positionierung des Brand-Blocks – nicht mehr genutzt) */
+.splash-brand {
+  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 20; display: none;
+}
+.brand-logo {
+  display: block;
+  width: auto;
+  height: clamp(56px, 7.2vh, 80px);            /* Logo größer als die Siegel */
+  filter: drop-shadow(0 3px 12px rgba(0,0,0,.6));
+}
+.brand-seals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.brand-seals img {
+  display: block;
+  width: auto;
+  height: clamp(46px, 5.6vh, 60px);            /* Siegel etwas kleiner als das Logo */
+  filter: drop-shadow(0 3px 9px rgba(0,0,0,.5));
+}
+
+.sh-panel {
+  position: relative;
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  transition: flex-basis .6s cubic-bezier(.22,1,.36,1),
+              flex-grow .6s cubic-bezier(.22,1,.36,1);
+  isolation: isolate;
+}
+/* Inhalt hebt sich beim Hover leicht -> signalisiert Klickbarkeit */
+.sh-content { transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.sh-panel:hover .sh-content { transform: translateY(-4px); }
+
+/* Hintergrund-Farbverläufe je Panel */
+/* Links: kühler Stahl-Ton */
+.sh-panel.unfall {
+  background:
+    radial-gradient(120% 82% at 27% 0%, #38454f 0%, #1f262d 46%, #0f141a 100%);
+}
+/* Rechts: wärmerer Ton (unterstützt das Orange) */
+.sh-panel.industrie {
+  background:
+    radial-gradient(120% 90% at 76% 8%, #35302b 0%, #201c19 46%, #12100e 100%);
+}
+/* warmer Orange-Schimmer im Industrie-Panel */
+.sh-panel.industrie::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 45% at 82% 78%, rgba(232,98,12,.26), transparent 70%),
+    linear-gradient(0deg, rgba(15,17,19,.92) 0%, rgba(15,17,19,.55) 34%, transparent 58%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Textblock */
+.sh-content {
+  position: relative;
+  z-index: 3;
+  padding: clamp(28px, 4.5vw, 64px);
+  max-width: 560px;
+}
+.sh-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.sh-eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--orange);
+}
+.sh-content h2 {
+  color: #fff;
+  font-size: clamp(1.8rem, 3vw, 2.9rem);
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  margin: 0 0 14px;
+}
+.sh-content p {
+  color: #c7ccd1;
+  font-size: 1.05rem;
+  max-width: 42ch;
+  margin: 0 0 26px;
+}
+
+.sh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1rem;
+  background: var(--orange);
+  color: #fff;
+  border: 2px solid var(--orange);
+  transition: transform .3s ease, background .3s ease, gap .3s ease;
+}
+.sh-cta.ghost {
+  background: transparent;
+  border-color: rgba(255,255,255,.35);
+  color: #fff;
+}
+.sh-cta svg { width: 18px; height: 18px; transition: transform .3s ease; }
+.sh-panel:hover .sh-cta { gap: 18px; }
+.sh-panel:hover .sh-cta svg { transform: translateX(4px); }
+.sh-panel:hover .sh-cta.ghost { border-color: var(--orange); background: rgba(232,98,12,.14); }
+
+/* Bild-Bühne */
+.sh-media {
+  position: absolute;
+  left: 0; right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2%;
+  padding: 0 2%;
+  pointer-events: none;
+}
+/* Autos: unten verankert (stehen auf dem Boden) */
+.sh-panel.unfall .sh-media {
+  bottom: 7%;
+  height: 62%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3%;
+  padding: 0 4%;
+  align-items: end;
+  /* weiche Boden-Schatten unter beiden Autos (Erdung) */
+  background:
+    radial-gradient(42% 9% at 27% 100%, rgba(0,0,0,.6), transparent 72%),
+    radial-gradient(42% 9% at 73% 100%, rgba(0,0,0,.6), transparent 72%);
+}
+.sh-panel.unfall .sh-media img {
+  width: 100%;
+  min-width: 0;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 16px 20px rgba(0,0,0,.45));
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.sh-panel.unfall:hover .sh-media img { transform: translateY(-7px) scale(1.03); }
+
+/* Vorher/Nachher-Chips */
+.vn-chip {
+  position: absolute;
+  z-index: 4;
+  bottom: 8%;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+.vn-chip.vorher { left: 8%; background: rgba(0,0,0,.55); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+.vn-chip.nachher { right: 8%; background: var(--orange); color: #fff; }
+
+/* Industrie: Hängebahn oben verankert (Teile hängen von oben) */
+.sh-panel.industrie .sh-media {
+  top: 9%;                     /* Platz für den Header oben */
+  height: 58%;
+  align-items: flex-start;
+  padding: 0;
+  overflow: hidden;
+}
+.sh-panel.industrie .sh-media img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: drop-shadow(0 20px 26px rgba(0,0,0,.5));
+  transform-origin: top center;
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.sh-panel.industrie:hover .sh-media img { transform: scale(1.04); }
+/* Industrie: Text unten */
+.sh-panel.industrie { justify-content: flex-end; }
+.sh-panel.industrie .sh-content { align-self: flex-start; }
+
+/* Lesbarkeits-Scrim */
+.sh-panel.unfall .sh-content {
+  background: linear-gradient(180deg, rgba(20,23,26,.6) 0%, rgba(20,23,26,0) 100%);
+  border-radius: 0;
+}
+
+/* Split-Interaktion: gehovertes Panel wächst */
+@media (hover: hover) and (min-width: 901px) {
+  .split-hero:hover .sh-panel { flex-grow: .85; }
+  .split-hero:hover .sh-panel:hover { flex-grow: 1.3; }
+  .sh-panel::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(10,11,12,.28);
+    opacity: 0; z-index: 2;
+    transition: opacity .5s ease;
+    pointer-events: none;
+  }
+  .split-hero:hover .sh-panel:not(:hover)::before { opacity: 1; }
+}
+
+/* Mittelnaht mit Marken-Badge */
+.sh-seam {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,.18) 20%, rgba(255,255,255,.18) 80%, transparent);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sh-badge {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--schwarz);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.2rem;
+  letter-spacing: -.02em;
+}
+.sh-badge span { color: var(--orange); }
+
+@media (max-width: 900px) {
+  .split-hero { flex-direction: column; height: 100vh; height: 100dvh; }
+  .sh-panel { flex: 1 1 50%; min-height: 0; }
+  .sh-seam { display: none; }
+  .sh-panel.unfall .sh-media { height: 50%; bottom: 2%; }
+  .sh-panel.industrie .sh-media { height: 50%; }
+  .sh-content { padding: 20px; max-width: none; }
+  .sh-content h2 { font-size: clamp(1.5rem, 6.4vw, 2.1rem); margin-bottom: 10px; }
+  .sh-content p { font-size: .95rem; margin-bottom: 18px; }
+  /* Header auf Mobil kompakter */
+  .splash-header { padding: 12px 18px 0; }
+  .sph-nav { gap: 16px; padding-top: 8px; }
+  .sph-nav a { font-size: .9rem; }
+  .sph-brand .brand-logo { height: 40px; }
+  .sph-brand .brand-seals img { height: 30px; }
+  /* untere (Industrie-)Hälfte: kein Header darüber */
+  .sh-panel.industrie .sh-media { top: 0; height: 50%; }
+  /* obere Hälfte: Platz für den Header lassen */
+  .sh-panel.unfall .sh-content { padding-top: 118px; }
+}
+@media (max-width: 560px) {
+  .sh-content p { display: none; }          /* Gateway ohne Scrollen: kompakt halten */
+  .sh-content h2 { font-size: clamp(1.4rem, 7vw, 1.9rem); }
+  .sh-eyebrow { margin-bottom: 8px; font-size: .72rem; }
+  .sh-cta { padding: 11px 20px; font-size: .92rem; }
+  .sph-brand .brand-logo { height: 36px; }
+  .sph-brand .brand-seals img { height: 27px; }
+  .sph-nav { gap: 12px; }
+  .sph-nav a { font-size: .82rem; }
+  .sh-panel.unfall .sh-content { padding-top: 104px; }
+}
+
+/* ---------- Prozess: 4 Kacheln ---------- */
+.kacheln {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+.kachel {
+  background: var(--weiss);
+  border: 1px solid var(--grau-linie);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.kachel .platzhalter { border: 0; border-radius: 0; min-height: 170px; }
+.kachel .kachel-text { padding: 18px; }
+.kachel .schritt {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.kachel h3 { margin-bottom: 4px; }
+.kachel p { font-size: 0.95rem; margin: 0; }
+
+/* ---------- Vorteile (Checkliste) ---------- */
+.vorteile { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.vorteile li { position: relative; padding-left: 32px; }
+.vorteile li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* ---------- Vorher / Nachher ---------- */
+.vergleich {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.vergleich .seite { display: flex; flex-direction: column; gap: 10px; }
+.vergleich .platzhalter { min-height: 360px; }
+.vergleich .badge {
+  align-self: flex-start;
+  background: var(--anthrazit);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.vergleich .badge.nachher { background: var(--orange); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.tags span {
+  background: var(--grau-hell);
+  border: 1px solid var(--grau-linie);
+  border-radius: 100px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  color: var(--grau-text);
+}
+
+/* ---------- Galerie ---------- */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.galerie .platzhalter { min-height: 220px; }
+
+/* ---------- Formular ---------- */
+.formular-block { max-width: 820px; }
+.formular { display: grid; gap: 18px; margin-top: 24px; }
+.formular .reihe { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.feld { display: flex; flex-direction: column; gap: 6px; }
+.feld label { font-size: 0.9rem; font-weight: 600; color: var(--anthrazit); }
+.feld input,
+.feld textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--grau-linie);
+  border-radius: 6px;
+  font: inherit;
+  color: var(--anthrazit);
+  background: var(--weiss);
+}
+.feld textarea { resize: vertical; min-height: 120px; }
+.feld input:focus,
+.feld textarea:focus { outline: 2px solid var(--orange); border-color: var(--orange); }
+.checkbox-reihe { display: flex; align-items: flex-start; gap: 10px; }
+.checkbox-reihe input { margin-top: 4px; }
+.checkbox-reihe label { font-weight: 400; font-size: 0.9rem; color: var(--grau-text); }
+
+.upload-hinweis {
+  border: 2px dashed var(--grau-linie);
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 0.9rem;
+  color: var(--grau-text);
+}
+
+/* "Was passiert danach" */
+.danach {
+  margin-top: 40px;
+  background: var(--weiss);
+  border: 1px solid var(--grau-linie);
+  border-radius: 8px;
+  padding: 28px;
+}
+.danach ol { margin: 12px 0 0; padding-left: 20px; }
+.danach li { margin-bottom: 6px; }
+
+/* ---------- Kontakt ---------- */
+.kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.kontakt-daten dl { margin: 0; display: grid; gap: 18px; }
+.kontakt-daten dt { font-weight: 700; color: var(--schwarz); }
+.kontakt-daten dd { margin: 0; color: var(--grau-text); }
+.kontakt-daten a { text-decoration: none; }
+.oeffnungszeiten { list-style: none; margin: 0; padding: 0; }
+.oeffnungszeiten li { display: flex; justify-content: space-between; max-width: 320px; padding: 2px 0; }
+
+/* ---------- Leistungen (Unterseite) ---------- */
+.leistungen { display: grid; gap: 40px; }
+.leistung { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.leistung:nth-child(even) .media { order: -1; }
+.leistung .platzhalter { min-height: 260px; }
+.leistung.nur-text { grid-template-columns: 1fr; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--schwarz);
+  color: #c7ccd1;
+  padding: 48px 0 32px;
+}
+.site-footer a { color: #c7ccd1; text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.site-footer h4 { color: #fff; margin: 0 0 12px; font-size: 1rem; }
+.footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.footer-unten {
+  border-top: 1px solid #2a2d30;
+  padding-top: 20px;
+  font-size: 0.85rem;
+  color: #8b9197;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; gap: 28px; }
+  .split.bild-links .media { order: 0; }
+  .kacheln { grid-template-columns: repeat(2, 1fr); }   /* Mobil untereinander/2er */
+  .galerie { grid-template-columns: repeat(2, 1fr); }
+  .kontakt-grid { grid-template-columns: 1fr; gap: 32px; }
+  .leistung { grid-template-columns: 1fr; gap: 24px; }
+  .leistung:nth-child(even) .media { order: 0; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 48px 0; }
+  .kacheln { grid-template-columns: 1fr; }               /* Mobil untereinander (Leitfaden) */
+  .galerie { grid-template-columns: 1fr; }
+  .vergleich { grid-template-columns: 1fr; }
+  .formular .reihe { grid-template-columns: 1fr; }
+  .hauptnav { display: none; }                            /* einfache Navi in Struktur-Phase */
+  .nav-cta { display: none; }                             /* CTA steckt im Hero – Header schlank halten */
+  .logo { font-size: .98rem; }
+}
+
+/* =========================================================
+   HEADER mit zentriertem Logo (Unfallreparatur-Seite)
+   ========================================================= */
+.site-header .container.header-3col {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  min-height: 86px;
+}
+.nav-left { justify-self: start; display: flex; gap: 26px; flex-wrap: wrap; }
+.nav-left a { color: var(--anthrazit); text-decoration: none; font-size: .98rem; }
+.nav-left a:hover { color: var(--orange); }
+.header-logo { justify-self: center; line-height: 0; display: block; }
+.header-logo img { height: 54px; width: auto; display: block; }
+.nav-right { justify-self: end; display: flex; align-items: center; gap: 20px; }
+.nav-right .nav-link { color: var(--anthrazit); text-decoration: none; font-size: .98rem; white-space: nowrap; }
+.nav-right .nav-link:hover { color: var(--orange); }
+.nav-right .btn { padding: 11px 20px; white-space: nowrap; }
+
+/* =========================================================
+   HERO – SCHADEN-SELEKTOR
+   ========================================================= */
+.hero-select { padding: 64px 0 72px; background: var(--weiss); }
+.hs-head { text-align: center; max-width: 760px; margin: 0 auto 40px; }
+.hs-head h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+}
+.hs-head .lead { color: var(--grau-text); margin: 0 auto; }
+
+.car-select { max-width: 900px; margin: 0 auto; }
+
+/* Reihe mit den 3 Auto-Teilen */
+.car-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.6%;                 /* etwas Abstand zwischen den drei Teilen */
+  align-items: end;
+}
+.car-seg {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.car-seg img { width: 100%; height: auto; display: block; }
+/* Orange Tönung, exakt auf die Auto-Silhouette maskiert */
+.car-seg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--orange);
+  -webkit-mask: var(--seg) center / 100% 100% no-repeat;
+          mask: var(--seg) center / 100% 100% no-repeat;
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+.car-seg:hover::after { opacity: .38; }
+.car-seg.selected::after { opacity: .62; }
+.car-seg:hover { transform: translateY(-4px); }
+.car-seg.selected { transform: translateY(-4px); }
+
+/* Labels + Front-/Heckansicht */
+.car-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.6%;
+  margin-top: 14px;
+}
+.seg-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.seg-label .lbl {
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--anthrazit);
+  padding: 6px 18px;
+  border: 2px solid var(--grau-linie);
+  border-radius: 100px;
+  transition: all .25s ease;
+}
+.seg-label.active .lbl {
+  color: #fff;
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.seg-label .thumb {
+  width: 100%;
+  max-width: 190px;
+  display: flex;
+  justify-content: center;
+}
+.seg-label .thumb img { width: 100%; height: auto; display: block; }
+
+/* Auswahl-Bestätigung */
+.hs-action {
+  margin: 36px auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.hs-action[hidden] { display: none; }
+.hs-chosen { margin: 0; font-size: 1.05rem; color: var(--anthrazit); }
+.hs-chosen strong { color: var(--orange); }
+
+@media (max-width: 780px) {
+  .site-header .container.header-3col { grid-template-columns: auto 1fr; gap: 14px; min-height: 70px; }
+  .nav-left { display: none; }
+  .header-logo { justify-self: start; }
+  .header-logo img { height: 44px; }
+  .nav-right { justify-self: end; gap: 12px; }
+  .nav-right .nav-link { display: none; }
+}
+@media (max-width: 560px) {
+  .seg-label .lbl { font-size: .9rem; padding: 5px 12px; }
+  .hs-head h1 { font-size: 1.6rem; }
+}
+
+/* =========================================================
+   SCHADEN-ASSISTENT (Wizard)
+   ========================================================= */
+.wizard { max-width: 900px; margin: 0 auto; scroll-margin-top: 104px; }
+
+/* Fortschritt */
+.wz-progress { max-width: 520px; margin: 0 auto 34px; }
+.wz-bar { height: 6px; background: #eceef0; border-radius: 100px; overflow: hidden; }
+.wz-bar span { display: block; height: 100%; background: var(--orange); border-radius: 100px; transition: width .4s cubic-bezier(.22,1,.36,1); }
+.wz-count { text-align: center; margin: 10px 0 0; font-size: .9rem; color: var(--grau-text); }
+.wz-count b { color: var(--anthrazit); }
+
+@keyframes wzfade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.wz-step:not([hidden]) { animation: wzfade .35s ease; }
+
+/* Schritt 2 – Unfallart-Karten */
+.opt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.opt-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 24px 14px;
+  border: 2px solid var(--grau-linie);
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600; font-size: .98rem; color: var(--anthrazit);
+  text-align: center;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.opt-card:hover { border-color: var(--orange); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.07); }
+.opt-card.selected { border-color: var(--orange); background: #fff7f1; }
+.opt-ico { font-size: 1.7rem; line-height: 1; }
+
+/* Schritt 3 – Schaden-Chips */
+.chip-grid {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  max-width: 720px; margin: 0 auto 18px;
+}
+.chip {
+  padding: 10px 18px;
+  border: 2px solid var(--grau-linie);
+  border-radius: 100px;
+  background: #fff;
+  cursor: pointer;
+  font-size: .95rem; font-weight: 500; color: var(--anthrazit);
+  transition: all .18s ease;
+}
+.chip:hover { border-color: var(--orange); }
+.chip.selected { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+.wz-textarea {
+  display: block; width: 100%; max-width: 720px; margin: 0 auto;
+  padding: 14px; border: 1px solid var(--grau-linie); border-radius: 10px;
+  font: inherit; color: var(--anthrazit); resize: vertical;
+}
+.wz-textarea:focus { outline: 2px solid var(--orange); border-color: var(--orange); }
+
+/* Fahrbereit-Frage (Segmented) */
+.fahrbereit {
+  max-width: 720px; margin: 22px auto 0;
+  display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+}
+.fb-q { font-weight: 600; color: var(--anthrazit); }
+.seg-choice { display: inline-flex; border: 2px solid var(--grau-linie); border-radius: 100px; overflow: hidden; }
+.seg-choice button { padding: 10px 20px; border: 0; background: #fff; cursor: pointer; font: inherit; color: var(--anthrazit); }
+.seg-choice button + button { border-left: 1px solid var(--grau-linie); }
+.seg-choice button:hover { background: #faf1ea; }
+.seg-choice button.selected { background: var(--orange); color: #fff; }
+
+/* Navigation */
+.wz-nav { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 32px; }
+.wz-back { background: none; border: 0; color: var(--grau-text); cursor: pointer; font: inherit; font-weight: 600; padding: 12px 8px; }
+.wz-back:hover { color: var(--anthrazit); }
+
+/* Schritt 4 – Zusammenfassung + Form */
+.wz-summary { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 720px; margin: 0 auto 26px; }
+.sum-chip { background: #f4f5f6; border: 1px solid var(--grau-linie); border-radius: 100px; padding: 7px 15px; font-size: .9rem; color: var(--grau-text); }
+.sum-chip b { color: var(--anthrazit); }
+.wz-form { max-width: 640px; margin: 0 auto; }
+.wz-form .wz-nav { margin-top: 8px; }
+
+/* Danke-Screen */
+.wz-done { text-align: center; max-width: 620px; margin: 0 auto; padding: 24px 0; }
+.wz-check {
+  width: 74px; height: 74px; border-radius: 50%;
+  background: var(--orange); color: #fff; font-size: 2.1rem;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 22px;
+}
+
+@media (max-width: 680px) {
+  .opt-grid { grid-template-columns: repeat(2, 1fr); }
+  .fahrbereit { flex-direction: column; gap: 12px; }
+}
+@media (max-width: 420px) {
+  .opt-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   WIZARD – POLITUR (Schritte 2–4, edleres Design)
+   ========================================================= */
+
+/* Schritt 2 – Unfallart-Karten mit Line-Icons */
+.opt-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 14px; max-width: 860px; margin: 0 auto;
+}
+.opt-card {
+  flex: 0 1 190px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 26px 16px 20px;
+  border: 1.5px solid #e6e8ea; border-radius: 18px; background: #fff;
+  cursor: pointer; color: var(--anthrazit);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.opt-card:hover { border-color: #f0c3a3; transform: translateY(-4px); box-shadow: 0 14px 30px rgba(17,19,21,.08); }
+.opt-card.selected { border-color: var(--orange); background: #fff8f3; box-shadow: 0 10px 26px rgba(232,98,12,.14); }
+.opt-badge {
+  width: 60px; height: 60px; border-radius: 16px;
+  background: #f4f5f6; color: #3a4046;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s ease, color .2s ease;
+}
+.opt-badge svg { width: 28px; height: 28px; }
+.opt-card:hover .opt-badge,
+.opt-card.selected .opt-badge { background: #fff1e8; color: var(--orange); }
+.opt-lbl { font-weight: 600; font-size: .97rem; text-align: center; line-height: 1.25; }
+
+/* Karten-Container für Schritt 3 & 4 */
+.wz-card {
+  max-width: 640px; margin: 0 auto; text-align: left;
+  background: #fff; border: 1.5px solid #e9ebed; border-radius: 20px;
+  padding: 30px; box-shadow: 0 14px 44px rgba(17,19,21,.06);
+}
+.wz-field { margin-bottom: 24px; }
+.wz-field:last-child { margin-bottom: 0; }
+.wz-flabel { display: block; font-weight: 700; font-size: .9rem; color: var(--anthrazit); margin-bottom: 12px; }
+.wz-flabel em { font-weight: 500; color: var(--grau-text); font-style: normal; }
+
+/* Schaden-Chips */
+.chip-grid { justify-content: flex-start; margin: 0; max-width: none; }
+.chip {
+  border: 1.5px solid #e6e8ea; padding: 9px 16px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip.selected::before { content: "✓"; font-weight: 800; font-size: .82em; }
+.chip.selected { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+.wz-textarea { max-width: none; border: 1.5px solid #e6e8ea; border-radius: 12px; padding: 14px 16px; }
+
+/* Segmented (fahrbereit) */
+.seg-choice { border: 1.5px solid #e6e8ea; border-radius: 12px; }
+.seg-choice button { padding: 11px 24px; font-weight: 600; }
+.seg-choice button + button { border-left: 1.5px solid #e6e8ea; }
+
+/* Formularfelder im Wizard */
+.wz-form .feld label { font-weight: 700; font-size: .9rem; }
+.wz-form .feld input {
+  border: 1.5px solid #e6e8ea; border-radius: 12px; padding: 13px 15px;
+}
+.wz-form .checkbox-reihe { margin-top: 4px; }
+
+/* Zusammenfassung „Ihre Angaben“ */
+.wz-recap {
+  background: #f7f8f9; border: 1px solid #eceef0; border-radius: 14px;
+  padding: 16px 18px; margin-bottom: 26px;
+}
+.wz-recap .wz-flabel { margin-bottom: 10px; }
+.wz-summary { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; max-width: none; justify-content: flex-start; }
+.sum-chip { background: #fff; border: 1px solid #e2e4e6; }
+
+/* Upload-Dropzone */
+.dz-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
+  padding: 28px 20px; border: 2px dashed #d5d9dd; border-radius: 14px;
+  cursor: pointer; color: var(--grau-text);
+  transition: border-color .2s ease, background .2s ease;
+}
+.dropzone:hover { border-color: var(--orange); background: #fff9f5; }
+.dropzone svg { width: 30px; height: 30px; color: var(--orange); margin-bottom: 2px; }
+.dropzone .dz-main { color: var(--anthrazit); font-size: .98rem; }
+.dropzone small { font-size: .82rem; }
+.dropzone.has-files { border-color: var(--orange); background: #fff7f1; }
+
+/* Vertrauens-Zeile */
+.wz-trust { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--grau-text); margin: 6px 0 0; }
+.wz-trust svg { width: 18px; height: 18px; color: var(--orange); flex: none; }
+
+@media (max-width: 560px) {
+  .wz-card { padding: 22px 18px; }
+  .opt-card { flex-basis: 150px; }
+}
+
+/* =========================================================
+   SO LÄUFT DIE REPARATUR AB – 4 hohe Bild-Panels
+   ========================================================= */
+.ablauf { padding-bottom: 0; }
+.ablauf .lead { max-width: none; }   /* Intro-Satz auf einer Zeile */
+
+.ablauf-panels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;                     /* dünne Trennung -> 4 klare Rechtecke */
+  margin-top: 40px;
+  width: 100%;
+}
+.ablauf-panel {
+  position: relative;
+  min-height: 640px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ap-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.ablauf-panel:hover .ap-bg { transform: scale(1.05); }
+/* Lesbarkeits-Scrim (unten dunkel, oben klar) */
+.ablauf-panel::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(0deg,
+    rgba(9,11,13,.92) 0%, rgba(9,11,13,.55) 30%,
+    rgba(9,11,13,.12) 56%, transparent 100%);
+}
+.ap-inner {
+  position: relative; z-index: 2;
+  padding: 30px 26px 34px;
+  color: #fff; text-align: left;
+}
+.ap-step {
+  display: inline-block;
+  font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #fff; background: var(--orange);
+  padding: 5px 13px; border-radius: 100px; margin-bottom: 14px;
+}
+.ap-inner h3 { color: #fff; font-size: 1.4rem; line-height: 1.15; margin: 0 0 8px; }
+.ap-inner p { color: #e2e6e9; font-size: .98rem; margin: 0; max-width: 30ch; }
+
+@media (max-width: 900px) {
+  .ablauf-panels { grid-template-columns: 1fr 1fr; }
+  .ablauf-panel { min-height: 420px; }
+}
+@media (max-width: 560px) {
+  .ablauf-panels { grid-template-columns: 1fr; }   /* Mobil untereinander (Leitfaden) */
+  .ablauf-panel { min-height: 340px; }
+}
+
+/* =========================================================
+   UNSERE LEISTUNGEN – Liste links, Detail rechts
+   ========================================================= */
+.eyebrow {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; flex: none; width: 28px; height: 2px; background: var(--orange); border-radius: 2px; }
+/* feine, auslaufende Linie durch den Section-Kopf */
+.eyebrow::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--grau-linie) 0%, rgba(220,222,224,0) 96%); }
+.sec-head-left { max-width: none; }
+.sec-head-left h2 { margin-bottom: 10px; max-width: 26ch; }
+.sec-head-left .lead { max-width: 64ch; }
+
+/* Reusable: dezente Eck-Linien um ein Element */
+.framed { position: relative; }
+.framed .corner { position: absolute; width: 22px; height: 22px; border: 2px solid var(--anthrazit); pointer-events: none; z-index: 2; }
+.framed .corner.tl { top: -11px; left: -11px; border-right: 0; border-bottom: 0; }
+.framed .corner.tr { top: -11px; right: -11px; border-left: 0; border-bottom: 0; }
+.framed .corner.bl { bottom: -11px; left: -11px; border-right: 0; border-top: 0; }
+.framed .corner.br { bottom: -11px; right: -11px; border-left: 0; border-top: 0; }
+
+.lst-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 48px;
+  margin-top: 44px;
+  align-items: start;
+}
+
+/* Liste */
+.lst-list { display: flex; flex-direction: column; gap: 4px; }
+.lst-item {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 14px 16px; border: 0; background: transparent; border-radius: 12px;
+  cursor: pointer; font: inherit; font-weight: 600; font-size: 1rem;
+  color: var(--anthrazit); text-align: left;
+  transition: background .18s ease;
+}
+.lst-ico {
+  width: 42px; height: 42px; border-radius: 11px; flex: none;
+  background: #f4f5f6; color: #3a4046;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s ease, color .2s ease;
+}
+.lst-ico svg { width: 21px; height: 21px; }
+.lst-name { flex: 1; line-height: 1.25; }
+.lst-arrow { width: 18px; height: 18px; flex: none; color: var(--orange); opacity: 0; transform: translateX(-4px); transition: opacity .2s ease, transform .2s ease; }
+.lst-item:hover { background: #f7f8f9; }
+.lst-item.active { background: #fff7f1; box-shadow: inset 3px 0 0 var(--orange); }
+.lst-item.active .lst-ico { background: var(--orange); color: #fff; }
+.lst-item.active .lst-arrow { opacity: 1; transform: none; }
+
+/* Detail – Bild & Text-Kasten gleich hoch, direkt aneinander (abwechselnd) */
+.lst-detail { position: relative; }
+.lst-panel { display: none; }
+.lst-panel.active {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 430px;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(17,19,21,.16);
+  animation: lstFade .4s ease;
+}
+@keyframes lstFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* Standard: Kasten links, Bild rechts */
+.lst-card { order: 1; }
+.lst-img  { order: 2; }
+/* Abwechselnd: Bild links, Kasten rechts */
+.lst-panel.rev .lst-img  { order: 1; }
+.lst-panel.rev .lst-card { order: 2; }
+
+/* Bild füllt seine Hälfte komplett */
+.lst-img { background: #eceef0; overflow: hidden; }
+.lst-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Text-Kasten in Anthrazit, gleiche Höhe wie das Bild */
+.lst-card {
+  background: var(--anthrazit);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 46px 44px;
+}
+.lst-card::before {
+  content: ""; display: block; width: 42px; height: 3px;
+  background: var(--orange); border-radius: 2px; margin-bottom: 20px;
+}
+.lst-card h3 { color: #fff; font-size: 1.6rem; margin: 0 0 14px; }
+.lst-card p { color: #c7ccd1; font-size: 1.07rem; line-height: 1.7; margin: 0; max-width: none; }
+
+@media (max-width: 860px) {
+  .lst-layout { grid-template-columns: 1fr; gap: 26px; margin-top: 32px; }
+  .lst-detail { order: 2; }
+  .lst-list { order: 1; }
+  /* Mobil: Bild oben, Kasten direkt darunter */
+  .lst-panel.active { display: block; min-height: 0; }
+  .lst-img { aspect-ratio: 16 / 11; }
+  .lst-card { padding: 28px 24px; }
+  .lst-card h3 { font-size: 1.3rem; }
+}
+
+/* =========================================================
+   VIDEO-SECTION – deckt die ganze Section
+   ========================================================= */
+.video-section { padding: 72px 0; background: var(--weiss); }
+.video-frame { position: relative; max-width: 1000px; margin: 0 auto; line-height: 0; }
+.video-full {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: contain;     /* ganzes Video, kein Zuschnitt */
+  background: #000;
+  border-radius: 4px;
+}
+/* kleine schwarze Eck-Linien mit Abstand um das Video */
+.vf-corner {
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 2px solid var(--schwarz);
+  pointer-events: none;
+}
+.vf-corner.tl { top: -14px; left: -14px; border-right: 0; border-bottom: 0; }
+.vf-corner.tr { top: -14px; right: -14px; border-left: 0; border-bottom: 0; }
+.vf-corner.bl { bottom: -14px; left: -14px; border-right: 0; border-top: 0; }
+.vf-corner.br { bottom: -14px; right: -14px; border-left: 0; border-top: 0; }
+@media (max-width: 560px) {
+  .video-section { padding: 44px 0; }
+  .vf-corner { width: 18px; height: 18px; }
+  .vf-corner.tl, .vf-corner.tr { top: -10px; }
+  .vf-corner.bl, .vf-corner.br { bottom: -10px; }
+  .vf-corner.tl, .vf-corner.bl { left: -10px; }
+  .vf-corner.tr, .vf-corner.br { right: -10px; }
+}
+
+/* =========================================================
+   ÜBER UNS
+   ========================================================= */
+.ueber-hero { padding: 60px 0 18px; }
+.ueber-hero h1 { margin: 6px 0 14px; }
+.ueber-hero .lead { max-width: 72ch; }
+
+.ueber-teamfoto { padding: 24px 0 8px; }
+.ueber-teamfoto .platzhalter.gross { min-height: 460px; }
+
+.ueber-intro { font-size: 1.12rem; line-height: 1.75; color: var(--anthrazit); max-width: 80ch; margin: 0; }
+
+/* Meilenstein-Timeline */
+.timeline { margin-top: 40px; max-width: 820px; }
+.tl-item {
+  display: grid; grid-template-columns: 110px 1fr; gap: 28px;
+  padding: 26px 0; border-top: 1px solid var(--grau-linie);
+}
+.tl-item:last-child { border-bottom: 1px solid var(--grau-linie); }
+.tl-year { font-size: 1.7rem; font-weight: 800; color: var(--orange); line-height: 1; letter-spacing: -.02em; }
+.tl-text h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.tl-text p { margin: 0; color: var(--grau-text); max-width: 62ch; }
+
+/* Team-Grid */
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 24px; margin-top: 44px; }
+.team-card {
+  background: #fff; border: 1px solid #e8eaec; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 10px 28px rgba(17,19,21,.05);
+  transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease;
+}
+.team-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(17,19,21,.14); }
+.team-card .team-photo { min-height: 0; aspect-ratio: 4 / 5; border: 0; border-radius: 0; }
+.team-info { padding: 18px 20px 22px; border-top: 3px solid var(--orange); }
+.team-name { font-weight: 700; color: var(--schwarz); font-size: 1.06rem; }
+.team-role { color: var(--grau-text); font-size: .92rem; margin-top: 3px; }
+
+/* Breite Recruiting-Karte */
+.team-join {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 30px;
+  background: var(--anthrazit); color: #fff;
+  border-radius: 18px; padding: 34px 38px;
+  box-shadow: 0 20px 48px rgba(17,19,21,.18);
+  margin-top: 6px; position: relative; overflow: hidden;
+}
+.team-join::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(60% 120% at 88% 50%, rgba(232,98,12,.22), transparent 70%);
+  pointer-events: none;
+}
+.tj-icon {
+  width: 66px; height: 66px; border-radius: 50%; flex: none; position: relative; z-index: 1;
+  border: 2px dashed rgba(255,255,255,.38); color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+}
+.tj-icon svg { width: 28px; height: 28px; }
+.tj-text { flex: 1; position: relative; z-index: 1; }
+.tj-text h3 { color: #fff; font-size: 1.45rem; margin: 0 0 6px; }
+.tj-text p { color: #cdd2d7; margin: 0; max-width: 62ch; }
+.team-join .btn { flex: none; position: relative; z-index: 1; white-space: nowrap; }
+
+/* Dunkler Header (wie Startseite) */
+.site-header.dark { background: var(--anthrazit); border-bottom: 1px solid rgba(255,255,255,.10); }
+.site-header.dark .nav-left a,
+.site-header.dark .nav-right .nav-link { color: #e6e9ec; }
+.site-header.dark .nav-left a:hover,
+.site-header.dark .nav-right .nav-link:hover { color: var(--orange); }
+
+/* Abschluss */
+.ueber-cta { max-width: 820px; }
+.ueber-cta p { font-size: 1.12rem; line-height: 1.75; color: var(--anthrazit); margin: 0 0 22px; max-width: 80ch; }
+
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .team-join { flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 24px; }
+}
+@media (max-width: 560px) {
+  .tl-item { grid-template-columns: 64px 1fr; gap: 16px; }
+  .tl-year { font-size: 1.3rem; }
+  .team-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tj-text h3 { font-size: 1.25rem; }
+}
+
+/* =========================================================
+   DESIGN-DEKO (Eck-Striche, Ringe) – wiederverwendbar
+   ========================================================= */
+/* Eck-Striche: oben-rechts + unten-links am Inhalt */
+.container.deco { position: relative; }
+.container.deco::before,
+.container.deco::after {
+  content: ""; position: absolute; width: 40px; height: 40px; pointer-events: none; z-index: 1;
+}
+.container.deco::before { top: -20px; right: 6px; border-top: 2px solid #cbd0d5; border-right: 2px solid #cbd0d5; }
+.container.deco::after  { bottom: -44px; left: 6px; border-bottom: 2px solid #cbd0d5; border-left: 2px solid #cbd0d5; }
+
+/* Feine Ringe (Kreise) als Hintergrund-Akzent */
+.deco-ring { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+
+/* =========================================================
+   KARRIERE
+   ========================================================= */
+.kar-hero {
+  position: relative; overflow: hidden;
+  min-height: 600px; display: flex; align-items: center; padding: 60px 0;
+  background: #1a1d20 url("assets/img/karriere-team.jpg") center/cover no-repeat;
+}
+.kar-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,12,14,.78) 0%, rgba(10,12,14,.5) 42%, rgba(10,12,14,.18) 70%, transparent 100%);
+}
+.kar-hero .container { position: relative; z-index: 1; }
+
+/* Text-Kasten links-mittig auf dem Bild */
+.kar-card {
+  max-width: 520px;
+  background: rgba(29,32,35,.92);
+  color: #fff;
+  border-radius: 18px;
+  padding: 42px 40px;
+  box-shadow: 0 30px 70px rgba(0,0,0,.45);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+.kar-card .eyebrow { color: var(--orange); }
+.kar-card .eyebrow::after { background: linear-gradient(90deg, rgba(255,255,255,.30), rgba(255,255,255,0)); }
+.kar-card h1 { color: #fff; margin: 6px 0 14px; }
+.kar-card .lead { color: #d7dbdf; max-width: none; }
+.kar-card .btn-secondary { color: #fff; border-color: rgba(255,255,255,.5); background: transparent; }
+.kar-card .btn-secondary:hover { border-color: #fff; }
+
+@media (max-width: 560px) {
+  .kar-hero { min-height: 520px; }
+  .kar-card { padding: 30px 24px; }
+}
+
+/* Warum-wir Karten */
+.perk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+.perk {
+  background: #fff; border: 1px solid #e8eaec; border-radius: 16px; padding: 28px 26px;
+  box-shadow: 0 10px 28px rgba(17,19,21,.05);
+  transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+}
+.perk:hover { transform: translateY(-6px); box-shadow: 0 22px 44px rgba(17,19,21,.11); }
+.perk-ico { width: 54px; height: 54px; border-radius: 14px; background: #fff1e8; color: var(--orange); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.perk-ico svg { width: 26px; height: 26px; }
+.perk h3 { margin: 0 0 8px; font-size: 1.12rem; }
+.perk p { margin: 0; color: var(--grau-text); font-size: .98rem; }
+
+/* Stellen-Karte */
+.job-card {
+  display: flex; align-items: center; gap: 32px;
+  background: #fff; border: 1px solid #e8eaec; border-left: 4px solid var(--orange);
+  border-radius: 18px; padding: 32px 34px; margin-top: 44px;
+  box-shadow: 0 16px 44px rgba(17,19,21,.07);
+}
+.job-main { flex: 1; min-width: 0; }
+.job-main h3 { font-size: 1.4rem; margin: 0 0 12px; }
+.job-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.job-tag { background: #f4f5f6; border: 1px solid var(--grau-linie); border-radius: 100px; padding: 5px 13px; font-size: .85rem; color: var(--grau-text); }
+.job-main p { margin: 0 0 8px; color: var(--anthrazit); max-width: 68ch; }
+.job-note { color: var(--grau-text); font-size: .92rem; font-style: italic; }
+.job-action { flex: none; }
+.job-initiativ { margin-top: 20px; color: var(--grau-text); }
+
+/* Bewerbungs-Formular */
+.kar-form {
+  max-width: 760px; margin-top: 44px; display: grid; gap: 18px;
+  background: #fff; border: 1px solid #e8eaec; border-radius: 18px; padding: 34px;
+  box-shadow: 0 16px 48px rgba(17,19,21,.06);
+}
+.kar-form .reihe { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.kar-form .feld { display: flex; flex-direction: column; gap: 6px; }
+.kar-form label { font-weight: 700; font-size: .9rem; color: var(--anthrazit); }
+.kar-form input, .kar-form select, .kar-form textarea {
+  padding: 12px 14px; border: 1.5px solid #e6e8ea; border-radius: 10px;
+  font: inherit; color: var(--anthrazit); background: #fff;
+}
+.kar-form select {
+  appearance: none; -webkit-appearance: none; padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23565b60' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+.kar-form textarea { resize: vertical; }
+.kar-form input:focus, .kar-form select:focus, .kar-form textarea:focus { outline: 2px solid var(--orange); border-color: var(--orange); }
+
+@media (max-width: 900px) {
+  .perk-grid { grid-template-columns: repeat(2, 1fr); }
+  .job-card { flex-direction: column; align-items: flex-start; gap: 22px; }
+}
+@media (max-width: 560px) {
+  .perk-grid { grid-template-columns: 1fr; }
+  .kar-form .reihe { grid-template-columns: 1fr; }
+  .kar-form { padding: 24px 20px; }
+  .container.deco::before, .container.deco::after { width: 28px; height: 28px; }
+}
+
+/* =========================================================
+   WARUM BENDA – hell, ohne Kästen (Karriere)
+   ========================================================= */
+.warum-head { max-width: 660px; margin-bottom: 46px; }
+.warum-head h2 { color: var(--schwarz); }
+.warum-head .lead { color: var(--grau-text); max-width: 60ch; }
+
+.warum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 40px; }
+.wcard { background: none; border: 0; box-shadow: none; padding: 0; }
+.wcard-ico { color: var(--orange); display: block; margin-bottom: 14px; }
+.wcard-ico svg { width: 32px; height: 32px; }
+.wcard h3 { color: var(--schwarz); font-size: 1.18rem; margin: 0 0 8px; }
+.wcard p { color: var(--anthrazit); font-size: .99rem; margin: 0; max-width: 40ch; }
+
+.warum-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 52px; padding-top: 36px; border-top: 1px solid var(--grau-linie); }
+.stat-num { display: block; font-size: 2.4rem; font-weight: 800; color: var(--schwarz); letter-spacing: -.02em; line-height: 1; }
+.stat-num::after { content: ""; display: block; width: 26px; height: 3px; background: var(--orange); border-radius: 2px; margin-top: 12px; }
+.stat-label { display: block; margin-top: 10px; color: var(--grau-text); font-size: .8rem; text-transform: uppercase; letter-spacing: .09em; }
+
+@media (max-width: 900px) {
+  .warum-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 32px; }
+  .warum-stats { grid-template-columns: repeat(2, 1fr); gap: 30px 18px; }
+}
+@media (max-width: 560px) {
+  .warum-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   INDUSTRIELACKIERUNG
+   ========================================================= */
+.ind-hero {
+  position: relative; overflow: hidden;
+  min-height: 560px; display: flex; align-items: center; padding: 60px 0;
+  background: #1a1d20 url("assets/img/ind-hero.jpg") center/cover no-repeat;
+}
+.ind-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,12,14,.80) 0%, rgba(10,12,14,.5) 42%, rgba(10,12,14,.18) 70%, transparent 100%);
+}
+.ind-hero .container { position: relative; z-index: 1; }
+
+/* Intro + Fakten */
+.ind-intro { font-size: 1.12rem; line-height: 1.75; color: var(--anthrazit); max-width: 84ch; margin: 0; }
+.ind-facts { display: flex; flex-wrap: wrap; gap: 52px; margin-top: 38px; }
+.fact-num { display: block; font-size: 2rem; font-weight: 800; color: var(--schwarz); letter-spacing: -.02em; line-height: 1; }
+.fact-num::after { content: ""; display: block; width: 24px; height: 3px; background: var(--orange); border-radius: 2px; margin-top: 10px; }
+.fact-label { display: block; margin-top: 10px; color: var(--grau-text); font-size: .9rem; }
+
+/* Leistungs-Banner: Bild dahinter, Text drauf (abwechselnd) */
+.ind-list { display: grid; gap: 20px; margin-top: 44px; }
+.ind-leistung {
+  position: relative; min-height: 300px; border-radius: 18px; overflow: hidden;
+  display: flex; align-items: center;
+  box-shadow: 0 16px 44px rgba(17,19,21,.12);
+}
+.ind-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.ind-leistung:hover .ind-bg { transform: scale(1.04); }
+.ind-leistung::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(9,11,13,.9) 0%, rgba(9,11,13,.62) 42%, rgba(9,11,13,.15) 78%, transparent 100%);
+}
+.ind-content { position: relative; z-index: 2; max-width: 540px; padding: 44px 48px; color: #fff; }
+.ind-num { display: block; color: var(--orange); font-weight: 800; font-size: .85rem; letter-spacing: .16em; margin-bottom: 8px; }
+.ind-content h3 { color: #fff; font-size: 1.5rem; margin: 0 0 10px; }
+.ind-content p { color: #dfe3e6; margin: 0; font-size: 1.03rem; line-height: 1.6; max-width: 46ch; }
+/* abwechselnd: Bild links, Text rechts */
+.ind-leistung.rev { justify-content: flex-end; }
+.ind-leistung.rev::before { background: linear-gradient(270deg, rgba(9,11,13,.9) 0%, rgba(9,11,13,.62) 42%, rgba(9,11,13,.15) 78%, transparent 100%); }
+.ind-leistung.rev .ind-content { text-align: right; }
+.ind-leistung.rev .ind-content p { margin-left: auto; }
+
+/* CTA */
+.ind-cta { max-width: 720px; }
+.ind-cta p { font-size: 1.1rem; color: var(--grau-text); margin: 12px 0 22px; max-width: 70ch; }
+
+@media (max-width: 760px) {
+  .ind-facts { gap: 26px 40px; }
+  .ind-leistung, .ind-leistung.rev { justify-content: flex-start; }
+  .ind-leistung.rev::before { background: linear-gradient(90deg, rgba(9,11,13,.9) 0%, rgba(9,11,13,.62) 45%, rgba(9,11,13,.2) 82%, transparent 100%); }
+  .ind-leistung.rev .ind-content { text-align: left; }
+  .ind-leistung.rev .ind-content p { margin-left: 0; }
+  .ind-content { padding: 30px 26px; max-width: none; }
+}
+@media (max-width: 560px) {
+  .ind-hero { min-height: 480px; }
+  .ind-leistung { min-height: 260px; }
+}
+
+/* Industrie-Hero: Kasten mittig, breiter (Rechteck), milchig-transparent */
+.ind-hero::before { background: rgba(10,12,14,.42); }
+.ind-hero .kar-card {
+  margin: 0 auto;
+  max-width: 760px;
+  width: 100%;
+  padding: 40px 54px;
+  background: rgba(20,23,26,.40);
+  border: 1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+          backdrop-filter: blur(18px) saturate(125%);
+}
+@media (max-width: 560px) {
+  .ind-hero .kar-card { padding: 30px 26px; }
+}
