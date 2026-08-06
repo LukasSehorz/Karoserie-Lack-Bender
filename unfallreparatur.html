@@ -8,13 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 
   <!-- ================= HEADER / NAVIGATION ================= -->
   <header class="site-header dark">
     <div class="container header-3col">
+      <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilMenue">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="nav-left">
         <a href="#schaden-selektor">Unfall gehabt?</a>
         <a href="#leistungen">Leistungen</a>
@@ -28,6 +31,12 @@
         <a href="#schaden-selektor" class="btn btn-primary">Unfallschaden melden</a>
       </div>
     </div>
+    <nav class="mobil-menue" id="mobilMenue" aria-label="Hauptmenü">
+        <a href="#schaden-selektor">Unfall gehabt?</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
   <main>
@@ -216,7 +225,55 @@
 
     <hr class="trenner">
 
-    <!-- ================= 2. UNSERE LEISTUNGEN ================= -->
+    <!-- ================= 2. SO LÄUFT DIE REPARATUR AB ================= -->
+    <section id="ablauf" class="ablauf">
+      <div class="container">
+        <h2>So läuft die Reparatur ab</h2>
+        <p class="lead">Vom ersten Kontakt bis zur Fahrzeugübergabe begleiten wir Sie Schritt für Schritt.</p>
+      </div>
+
+      <div class="ablauf-panels">
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-1.jpg" alt="Schaden per Smartphone fotografieren und melden" style="object-position: 22% center;">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 1</span>
+            <h3>Schaden melden</h3>
+            <p>Kurz Kontakt aufnehmen oder Bilder senden.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-2.jpg" alt="Mitarbeiter besichtigt den Schaden am Fahrzeug">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 2</span>
+            <h3>Fahrzeug besichtigen</h3>
+            <p>Wir schauen uns den Schaden gemeinsam mit Ihnen an.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-3.jpg" alt="Mitarbeiter erstellt den Kostenvoranschlag am Computer">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 3</span>
+            <h3>Kostenvoranschlag erhalten</h3>
+            <p>Sie erhalten eine transparente Kalkulation der Reparatur.</p>
+          </div>
+        </article>
+
+        <article class="ablauf-panel">
+          <img class="ap-bg" src="assets/img/ablauf-4.jpg" alt="Fertig repariertes und lackiertes Fahrzeug">
+          <div class="ap-inner">
+            <span class="ap-step">Schritt 4</span>
+            <h3>Reparatur durchführen lassen</h3>
+            <p>Karosserie und Lackierung aus einer Hand.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <hr class="trenner">
+
+    <!-- ================= 3. UNSERE LEISTUNGEN ================= -->
     <section id="leistungen" class="leistungen-sec">
       <div class="container deco">
         <div class="sec-head-left">
@@ -278,63 +335,54 @@
           <!-- Detail rechts -->
           <div class="lst-detail" id="lstDetail">
             <article class="lst-panel active" data-idx="0">
-              <div class="lst-img"><img src="assets/img/leistung-aussenhaut.jpg" alt="Außenhaut-Instandsetzung mit GYS Dentstation Premium"></div>
               <div class="lst-card">
                 <h3>Außenhaut-Instandsetzung</h3>
                 <p>Mit unserer GYS Dentstation Premium und unseren qualifizierten Mitarbeitern sind wir bestens gerüstet.</p>
               </div>
             </article>
-            <article class="lst-panel rev" data-idx="1">
-              <div class="lst-img"><img src="assets/img/leistung-vermessung.jpg" alt="Karosserievermessung"></div>
+            <article class="lst-panel" data-idx="1">
               <div class="lst-card">
                 <h3>Karosserievermessung</h3>
                 <p>Unsere Karosserievermessung erfolgt nach Herstellervorgaben und garantiert eine qualitative Reparatur.</p>
               </div>
             </article>
             <article class="lst-panel" data-idx="2">
-              <div class="lst-img"><img src="assets/img/leistung-instandsetzung.jpg" alt="Karosserieinstandsetzung – Richtbankarbeiten"></div>
               <div class="lst-card">
                 <h3>Karosserieinstandsetzung</h3>
                 <p>Richtbankarbeiten zur Wiederherstellung einer intakten Fahrzeugkarosserie.</p>
               </div>
             </article>
-            <article class="lst-panel rev" data-idx="3">
-              <div class="lst-img"><img src="assets/img/leistung-herstellervorgaben.jpg" alt="Instandsetzung nach Herstellervorgaben"></div>
+            <article class="lst-panel" data-idx="3">
               <div class="lst-card">
                 <h3>Instandsetzung nach Herstellervorgaben</h3>
                 <p>Bereits bei der Festlegung des Reparaturweges beachten wir den originalen Reparaturleitfaden und garantieren dadurch eine fachgerechte Instandsetzung.</p>
               </div>
             </article>
             <article class="lst-panel" data-idx="4">
-              <div class="lst-img"><img src="assets/img/leistung-fahrassistenz.jpg" alt="Kalibrierung der Fahrerassistenzsysteme"></div>
               <div class="lst-card">
                 <h3>Fahrassistenzsysteme</h3>
                 <p>Diagnose und Kalibrierung von Fahrerassistenzsystemen wie beispielsweise Notbremsassistent, Spurwechselassistent und die adaptive Geschwindigkeitsregelung.</p>
               </div>
             </article>
-            <article class="lst-panel rev" data-idx="5">
-              <div class="lst-img"><img src="assets/img/leistung-klima.jpg" alt="Klima-Service"></div>
+            <article class="lst-panel" data-idx="5">
               <div class="lst-card">
                 <h3>Klima-Service</h3>
                 <p>Wartung und Reparatur des Klimaanlagensystems durch unsere geschulten Fachkräfte unter Einhaltung der Chemikalien-Klimaschutzverordnung.</p>
               </div>
             </article>
             <article class="lst-panel" data-idx="6">
-              <div class="lst-img"><img src="assets/img/leistung-autoglas.jpg" alt="Autoglas – Reparatur und Austausch"></div>
               <div class="lst-card">
                 <h3>Autoglas – Reparatur &amp; Austausch</h3>
                 <p>Austausch und Reparatur an Front-, Seiten- und Heckscheiben. Schnelle und unkomplizierte Abwicklung mit Ihrer Versicherung.</p>
               </div>
             </article>
-            <article class="lst-panel rev" data-idx="7">
-              <div class="lst-img"><img src="assets/img/leistung-rad.jpg" alt="Komplettradmontage und Felgenreparatur"></div>
+            <article class="lst-panel" data-idx="7">
               <div class="lst-card">
                 <h3>Komplettradmontage &amp; Felgenreparatur</h3>
                 <p>Radwechsel, Reifenmontage und Reparatur von lackierten Alufelgen mit speziellem Mattierungsverfahren.</p>
               </div>
             </article>
             <article class="lst-panel" data-idx="8">
-              <div class="lst-img"><img src="assets/img/leistung-licht.jpg" alt="Lichteinstellung"></div>
               <div class="lst-card">
                 <h3>Lichteinstellung</h3>
                 <p>Einstellung von modernen Lichtsystemen wie Voll-LED, Matrix oder anderen dynamischen Lichtassistenten.</p>
@@ -347,55 +395,7 @@
 
     <hr class="trenner">
 
-    <!-- ================= 3. SO LÄUFT DIE REPARATUR AB ================= -->
-    <section id="ablauf" class="ablauf">
-      <div class="container">
-        <h2>So läuft die Reparatur ab</h2>
-        <p class="lead">Vom ersten Kontakt bis zur Fahrzeugübergabe begleiten wir Sie Schritt für Schritt.</p>
-      </div>
-
-      <div class="ablauf-panels">
-        <article class="ablauf-panel">
-          <img class="ap-bg" src="assets/img/ablauf-1.png" alt="Schaden per Smartphone fotografieren und melden">
-          <div class="ap-inner">
-            <span class="ap-step">Schritt 1</span>
-            <h3>Schaden melden</h3>
-            <p>Kurz Kontakt aufnehmen oder Bilder senden.</p>
-          </div>
-        </article>
-
-        <article class="ablauf-panel">
-          <img class="ap-bg" src="assets/img/ablauf-2.png" alt="Mitarbeiter besichtigt den Schaden am Fahrzeug">
-          <div class="ap-inner">
-            <span class="ap-step">Schritt 2</span>
-            <h3>Fahrzeug besichtigen</h3>
-            <p>Wir schauen uns den Schaden gemeinsam mit Ihnen an.</p>
-          </div>
-        </article>
-
-        <article class="ablauf-panel">
-          <img class="ap-bg" src="assets/img/ablauf-3.png" alt="Mitarbeiter erstellt den Kostenvoranschlag am Computer">
-          <div class="ap-inner">
-            <span class="ap-step">Schritt 3</span>
-            <h3>Kostenvoranschlag erhalten</h3>
-            <p>Sie erhalten eine transparente Kalkulation der Reparatur.</p>
-          </div>
-        </article>
-
-        <article class="ablauf-panel">
-          <img class="ap-bg" src="assets/img/ablauf-4.png" alt="Fertig repariertes und lackiertes Fahrzeug">
-          <div class="ap-inner">
-            <span class="ap-step">Schritt 4</span>
-            <h3>Reparatur durchführen lassen</h3>
-            <p>Karosserie und Lackierung aus einer Hand.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <hr class="trenner">
-
-    <!-- ================= 3. VIDEO ================= -->
+    <!-- ================= 4. VIDEO ================= -->
     <section id="vorher-nachher" class="video-section">
       <div class="container">
         <div class="video-frame">
@@ -412,29 +412,24 @@
 
     <hr class="trenner">
 
-    <!-- ================= 7. EIN BLICK IN UNSERE ARBEIT (GALERIE) ================= -->
+    <!-- ================= 5. EIN BLICK IN UNSERE ARBEIT (GALERIE) ================= -->
     <section id="galerie">
       <div class="container">
         <h2>Ein Blick in unsere Arbeit</h2>
         <p class="lead">Einige Eindrücke aus unserem Arbeitsalltag.</p>
 
         <div class="galerie">
-          <div class="platzhalter"><span class="ph-titel">Karosseriearbeiten</span></div>
-          <div class="platzhalter"><span class="ph-titel">Lackierkabine</span></div>
-          <div class="platzhalter"><span class="ph-titel">Fahrzeugvorbereitung</span></div>
-          <div class="platzhalter"><span class="ph-titel">Lackierer bei der Arbeit</span></div>
-          <div class="platzhalter"><span class="ph-titel">Detail Lackoberfläche</span></div>
-          <div class="platzhalter"><span class="ph-titel">Fertiges Fahrzeug</span></div>
-          <div class="platzhalter"><span class="ph-titel">Industrielackierung</span></div>
-          <div class="platzhalter"><span class="ph-titel">Team</span></div>
+          <figure class="gal-foto"><img src="assets/img/galerie-arbeit-1.jpg" alt="Karosseriearbeiten"></figure>
+          <figure class="gal-foto"><img src="assets/img/galerie-arbeit-2.jpg" alt="Karosseriearbeiten am Fahrzeug"></figure>
+          <figure class="gal-foto"><img src="assets/img/galerie-arbeit-3.jpg" alt="Karosserieteile vorbereiten"></figure>
+          <figure class="gal-foto"><img src="assets/img/galerie-arbeit-4.jpg" alt="Detail Lackoberfläche polieren"></figure>
         </div>
-        <p class="ph-hinweis" style="margin-top:16px;">Große Bilder, keine Miniaturbilder, maximal 8 bis 10 Bilder.</p>
       </div>
     </section>
 
     <hr class="trenner">
 
-    <!-- ================= 4. KONTAKT ================= -->
+    <!-- ================= 6. KONTAKT ================= -->
     <section id="kontakt">
       <div class="container">
         <h2>Kontakt</h2>
@@ -704,6 +699,33 @@
         });
       }, { threshold: [0, 0.6, 1] });
       io.observe(vid);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var b = document.querySelector('.burger'),
+          m = document.getElementById('mobilMenue');
+      if (!b || !m) return;
+      function setOpen(open) {
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+        b.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+        m.classList.toggle('offen', open);
+        b.classList.toggle('offen', open);
+        document.body.classList.toggle('menue-offen', open);
+      }
+      b.addEventListener('click', function () {
+        setOpen(b.getAttribute('aria-expanded') !== 'true');
+      });
+      m.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 780) setOpen(false);
+      });
     })();
   </script>
 </body>

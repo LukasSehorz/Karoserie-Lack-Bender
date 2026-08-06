@@ -8,13 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=25">
 </head>
 <body>
 
   <!-- ================= HEADER (Anthrazit) ================= -->
   <header class="site-header dark">
     <div class="container header-3col">
+      <button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobilMenue">
+        <span></span><span></span><span></span>
+      </button>
       <nav class="nav-left">
         <a href="unfallreparatur.html">Unfallreparatur</a>
         <a href="industrielackierung.html">Industrielackierung</a>
@@ -28,6 +31,12 @@
         <a href="#bewerbung" class="btn btn-primary">Jetzt bewerben</a>
       </div>
     </div>
+    <nav class="mobil-menue" id="mobilMenue" aria-label="Hauptmenü">
+        <a href="unfallreparatur.html">Unfallreparatur</a>
+        <a href="industrielackierung.html">Industrielackierung</a>
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="unfallreparatur.html#kontakt">Kontakt</a>
+    </nav>
   </header>
 
   <main>
@@ -235,5 +244,32 @@
     </div>
   </footer>
 
+
+  <script>
+    (function () {
+      var b = document.querySelector('.burger'),
+          m = document.getElementById('mobilMenue');
+      if (!b || !m) return;
+      function setOpen(open) {
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+        b.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+        m.classList.toggle('offen', open);
+        b.classList.toggle('offen', open);
+        document.body.classList.toggle('menue-offen', open);
+      }
+      b.addEventListener('click', function () {
+        setOpen(b.getAttribute('aria-expanded') !== 'true');
+      });
+      m.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setOpen(false);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 780) setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
