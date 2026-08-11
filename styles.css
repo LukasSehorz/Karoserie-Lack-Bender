@@ -644,6 +644,13 @@ body.splash { overflow: hidden; height: 100vh; }
   flex-wrap: wrap;
   gap: 12px;
 }
+/* KI-Kennzeichnung (EU AI Act) */
+.footer-ki {
+  margin: 12px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #8b9197;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
