@@ -1182,6 +1182,11 @@ body.splash { overflow: hidden; height: 100vh; }
 
 .ueber-teamfoto { padding: 24px 0 8px; }
 .ueber-teamfoto .platzhalter.gross { min-height: 460px; }
+.teamfoto-bild {
+  display: block; width: 100%; max-height: 560px;
+  object-fit: cover; object-position: center 30%;
+  border-radius: 8px;
+}
 
 .ueber-intro { font-size: 1.12rem; line-height: 1.75; color: var(--anthrazit); max-width: 80ch; margin: 0; }
 
@@ -1197,7 +1202,7 @@ body.splash { overflow: hidden; height: 100vh; }
 .tl-text p { margin: 0; color: var(--grau-text); max-width: 62ch; }
 
 /* Team-Grid */
-.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 24px; margin-top: 44px; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 24px; margin-top: 44px; }
 .team-card {
   background: #fff; border: 1px solid #e8eaec; border-radius: 16px; overflow: hidden;
   box-shadow: 0 10px 28px rgba(17,19,21,.05);
@@ -1279,23 +1284,24 @@ body.splash { overflow: hidden; height: 100vh; }
 .kar-hero {
   position: relative; overflow: hidden;
   min-height: 600px; display: flex; align-items: center; padding: 60px 0;
-  background: #1a1d20 url("assets/img/karriere-team.jpg") center/cover no-repeat;
+  background: #1a1d20 url("assets/img/karriere-team.jpg?v=3") center 12%/cover no-repeat;
 }
 .kar-hero::before {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(10,12,14,.78) 0%, rgba(10,12,14,.5) 42%, rgba(10,12,14,.18) 70%, transparent 100%);
+  background: linear-gradient(90deg, rgba(10,12,14,.5) 0%, rgba(10,12,14,.28) 42%, rgba(10,12,14,.1) 70%, transparent 100%);
 }
 .kar-hero .container { position: relative; z-index: 1; }
 
-/* Text-Kasten links-mittig auf dem Bild */
+/* Text-Kasten links-mittig auf dem Bild: milchig-transparent, damit das Team im Hintergrund sichtbar bleibt */
 .kar-card {
-  max-width: 520px;
-  background: rgba(29,32,35,.92);
+  max-width: 480px;
+  background: rgba(20,23,26,.46);
   color: #fff;
   border-radius: 18px;
-  padding: 42px 40px;
-  box-shadow: 0 30px 70px rgba(0,0,0,.45);
-  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  padding: 40px 38px;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(16px) saturate(125%); backdrop-filter: blur(16px) saturate(125%);
 }
 .kar-card .eyebrow { color: var(--orange); }
 .kar-card .eyebrow::after { background: linear-gradient(90deg, rgba(255,255,255,.30), rgba(255,255,255,0)); }
@@ -1402,8 +1408,8 @@ body.splash { overflow: hidden; height: 100vh; }
    ========================================================= */
 .ind-hero {
   position: relative; overflow: hidden;
-  min-height: 560px; display: flex; align-items: center; padding: 60px 0;
-  background: #1a1d20 url("assets/img/industrie-splash.jpg") center/cover no-repeat;
+  min-height: 620px; display: flex; align-items: center; padding: 60px 0;
+  background: #1a1d20 url("assets/img/industrie-hero.jpg") center/cover no-repeat;
 }
 .ind-hero::before {
   content: ""; position: absolute; inset: 0;
@@ -1687,11 +1693,13 @@ h3 { hyphens: auto; }
 @media (max-width: 560px) {
   .container.deco::before, .container.deco::after { display: none; }
   .ueber-teamfoto .platzhalter.gross { min-height: 260px; }
+  .teamfoto-bild { max-height: 320px; }
 }
 
 /* Milchglas-Ersatz, wo backdrop-filter fehlt (ältere Android-WebViews) */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .ind-hero .kar-card { background: rgba(20,23,26,.82); }
+  .kar-hero .kar-card { background: rgba(20,23,26,.82); }
 }
 
 /* ---------------------------------------------------------
@@ -1761,4 +1769,141 @@ h3 { hyphens: auto; }
   .ap-step { font-size: .8125rem; }
   .sh-eyebrow { font-size: .8125rem; }
   .vn-chip { font-size: .8125rem; }
+}
+
+/* Team-Fotos in den Karten */
+.team-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+.team-card .team-photo { overflow: hidden; }
+
+/* =========================================================
+   MOBIL-ÜBERARBEITUNG: Splash + Karriere-Hero
+   ========================================================= */
+
+@media (max-width: 900px) {
+  /* --- Texte in beiden Hälften zentriert --- */
+  .sh-content { text-align: center; }
+  .sh-eyebrow { justify-content: center; }
+
+  /* --- Industrie: Foto füllt die komplette Hälfte --- */
+  .sh-panel.industrie { justify-content: center; }
+  .sh-panel.industrie .sh-media {
+    position: absolute;
+    inset: 0;
+    top: 0; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 100%;
+    padding: 0;
+    overflow: hidden;
+    align-items: stretch;
+  }
+  .sh-panel.industrie .sh-media img {
+    width: 100%; height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center center;
+  }
+  /* Lesbarkeits-Verlauf über dem Foto */
+  .sh-panel.industrie::after {
+    background:
+      linear-gradient(0deg, rgba(11,13,15,.90) 0%, rgba(11,13,15,.62) 42%, rgba(11,13,15,.30) 72%, rgba(11,13,15,.22) 100%);
+  }
+  .sh-panel.industrie .sh-content { align-self: center; }
+}
+
+/* =========================================================
+   KARRIERE-HERO auf dem Handy: Foto oben in voller Breite,
+   Text darunter – so sind alle drei Personen gut zu sehen
+   ========================================================= */
+@media (max-width: 780px) {
+  .kar-hero {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: #15181b;
+  }
+  .kar-hero::before { display: none; }
+  .kar-hero .container { padding: 0; max-width: none; }
+  .kar-hero .container::before {
+    content: "";
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #15181b url("assets/img/karriere-team.jpg?v=3") center 32%/cover no-repeat;
+  }
+  .kar-card {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    background: #15181b;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    box-shadow: none;
+    padding: 30px 24px 36px;
+    text-align: left;
+  }
+  .kar-card .btn-gruppe { display: flex; flex-wrap: wrap; gap: 12px; }
+  .kar-card .btn { flex: 1 1 auto; }
+}
+
+/* Industrie-Hero auf dem Handy: Bildausschnitt auf Lackierer + Bauteil legen */
+@media (max-width: 780px) {
+  .ind-hero {
+    min-height: 0;
+    padding: 90px 0 46px;
+    background-position: 34% center;
+  }
+  .ind-hero .kar-card { padding: 30px 24px 34px; }
+}
+/* Eigener Hochformat-Zuschnitt fürs Handy */
+@media (max-width: 780px) {
+  .ind-hero {
+    background-image: url("assets/img/industrie-hero-mobil.jpg");
+    background-position: center center;
+  }
+}
+
+/* Industrie-Hero auf dem Handy wie die Karriere-Seite:
+   Foto oben in voller Breite, Text darunter – nichts wird verdeckt */
+@media (max-width: 780px) {
+  .ind-hero {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: #15181b;
+  }
+  .ind-hero::before { display: none; }
+  .ind-hero .container { padding: 0; max-width: none; }
+  .ind-hero .container::before {
+    content: "";
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #15181b url("assets/img/industrie-hero.jpg") center center/cover no-repeat;
+  }
+  .ind-hero .kar-card {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: #15181b;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    box-shadow: none;
+    padding: 30px 24px 36px;
+    text-align: left;
+  }
+  .ind-hero .kar-card .btn-gruppe { display: flex; flex-wrap: wrap; gap: 12px; }
+  .ind-hero .kar-card .btn { flex: 1 1 auto; }
+}
+
+/* Restliche Mikro-Schriften auf 14px anheben */
+@media (max-width: 560px) {
+  .sph-nav a { font-size: .875rem; }
+  .sh-eyebrow, .vn-chip, .ap-step { font-size: .875rem; }
+}
+/* Fußzeilen-Links: sichere Trefferfläche */
+@media (max-width: 860px) {
+  .footer-links a, .footer-unten a { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
+}
+@media (max-width: 430px) {
+  .sh-eyebrow { letter-spacing: .07em; }
+  .sh-eyebrow::before { width: 18px; }
 }

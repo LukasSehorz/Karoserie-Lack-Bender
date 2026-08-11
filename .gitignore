@@ -4,4 +4,11 @@
 # Unbearbeitete Foto-Rohdateien (nicht im HTML verwendet, nur Quellmaterial)
 assets/img/Arbeit *.JPG
 assets/img/Bild *.JPG
+assets/img/Karriere *.JPG
+assets/img/Mitarbeiter *.JPG
 assets/img/Lackierung Beispiel.JPG
+assets/img/galerie-arbeit-2 2.jpg
+
+# Foto-Rohdatenordner (826 MB Quellmaterial)
+Lack Benda/
+*.HEIC
