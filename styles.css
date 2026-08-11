@@ -384,6 +384,14 @@ body.splash { overflow: hidden; height: 100vh; }
 .sh-panel.industrie { justify-content: flex-end; }
 .sh-panel.industrie .sh-content { align-self: flex-start; }
 
+/* "Industrielackierung" muss auf der Splitscreen-Ansicht einzeilig bleiben.
+   Mehr Breite für die Überschrift; der Fließtext bleibt durch sein eigenes
+   max-width (42ch) unverändert schmal. */
+@media (min-width: 901px) {
+  .sh-panel.industrie .sh-content { max-width: 700px; }
+  .sh-panel.industrie .sh-content h2 { white-space: nowrap; }
+}
+
 /* Linke Hälfte ist hell -> dunkle Schrift, kein Scrim */
 .sh-panel.unfall .sh-content { background: none; border-radius: 0; }
 .sh-panel.unfall .sh-content h2 { color: #14181c; }
@@ -1344,6 +1352,81 @@ body.splash { overflow: hidden; height: 100vh; }
 .job-action { flex: none; }
 .job-initiativ { margin-top: 20px; color: var(--grau-text); }
 
+/* ---------- Ausführliche Stellen-Karte ---------- */
+.job-card.job-gross { flex-direction: column; align-items: stretch; gap: 0; }
+.job-card.job-gross .job-action { margin-top: 26px; align-self: flex-start; }
+
+/* Aufhänger: 4-Tage-Woche */
+.job-hook {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(90deg, #fff1e8, rgba(255,241,232,0) 92%);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 12px 12px 0;
+  padding: 15px 20px;
+  margin: 6px 0 22px !important;
+  max-width: none !important;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 600;
+  color: var(--schwarz);
+  line-height: 1.35;
+}
+.job-hook svg { width: 26px; height: 26px; flex: none; color: var(--orange); }
+.job-hook strong { font-weight: 800; }
+.job-hook .hook-leise { color: var(--grau-text); font-weight: 600; }
+
+/* Passt-du-Block */
+.job-passt {
+  background: var(--grau-hell);
+  border: 1px solid var(--grau-linie);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 18px 0 24px;
+  max-width: 68ch;
+}
+.job-passt p { margin: 0 0 6px; }
+.job-passt p:last-child { margin-bottom: 0; }
+.job-passt strong { color: var(--orange); }
+
+/* Zwischenüberschrift */
+.job-sub {
+  font-size: 1.06rem; font-weight: 700; color: var(--schwarz);
+  margin: 0 0 14px; letter-spacing: -.01em;
+}
+
+/* Leistungen mit Haken */
+.job-benefits {
+  list-style: none; padding: 0;
+  margin: 0 0 6px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px 28px;
+  max-width: 760px;
+}
+.job-benefits li { position: relative; padding-left: 32px; color: var(--anthrazit); }
+.job-benefits li::before {
+  content: ""; position: absolute; left: 0; top: .28em;
+  width: 20px; height: 20px; border-radius: 50%;
+  background-color: #fff1e8;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8620c' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center; background-size: 12px;
+}
+
+/* Anforderungs-Liste: gleiche Form, neutraler Ton (nicht "wir bieten") */
+.job-benefits.anforderung li::before {
+  background-color: #eceef0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23565b60' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 13 4 4L19 7'/%3E%3C/svg%3E");
+}
+.job-benefits + .job-sub { margin-top: 26px; }
+.job-main p + .job-sub { margin-top: 24px; }
+
+/* Abschluss-Frage */
+.job-schluss {
+  border-top: 1px solid var(--grau-linie);
+  margin-top: 26px; padding-top: 22px;
+}
+.job-schluss p { margin: 0 0 6px; }
+.job-schluss p:last-child { margin-bottom: 0; }
+.job-schluss-frage { font-weight: 700; color: var(--schwarz); font-size: 1.06rem; }
+
 /* Bewerbungs-Formular */
 .kar-form {
   max-width: 760px; margin-top: 44px; display: grid; gap: 18px;
@@ -1368,6 +1451,9 @@ body.splash { overflow: hidden; height: 100vh; }
 @media (max-width: 900px) {
   .perk-grid { grid-template-columns: repeat(2, 1fr); }
   .job-card { flex-direction: column; align-items: flex-start; gap: 22px; }
+  .job-card.job-gross { gap: 0; }
+  .job-benefits { grid-template-columns: 1fr; gap: 10px; }
+  .job-hook { align-items: flex-start; }
 }
 @media (max-width: 560px) {
   .perk-grid { grid-template-columns: 1fr; }
