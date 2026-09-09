@@ -1993,3 +1993,506 @@ h3 { hyphens: auto; }
   .sh-eyebrow { letter-spacing: .07em; }
   .sh-eyebrow::before { width: 18px; }
 }
+
+/* =========================================================
+   STARTSEITE – Fahrzeug/Unfall (ca. 2/3) · Industrie (ca. 1/3)
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.start-hero {
+  position: relative;
+  padding: 54px 0 60px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f8f9 55%, #eef0f2 100%);
+  overflow: hidden;
+}
+.start-hero .container { position: relative; z-index: 2; }
+.sthero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+  gap: 52px;
+  align-items: center;
+}
+.start-hero h1 {
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  line-height: 1.1;
+  margin: 10px 0 16px;
+}
+.start-sub {
+  font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1.35;
+  margin: 0 0 16px;
+}
+.start-hero p.start-text {
+  color: var(--grau-text);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 24px;
+  max-width: 58ch;
+}
+
+/* Vorher/Nachher-Paar */
+.vn-paar { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: end; }
+.vn-bild { position: relative; padding-bottom: 20px; }
+.vn-bild img { width: 100%; height: auto; display: block; }
+.vn-tag {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  padding: 6px 18px; border-radius: 100px; white-space: nowrap;
+  font-size: .82rem; font-weight: 700; letter-spacing: .03em;
+}
+.vn-tag.vorher { background: var(--anthrazit); color: #fff; }
+.vn-tag.nachher { background: var(--orange); color: #fff; }
+
+/* ---------- Intro in zwei Spalten (statt Textwand) ---------- */
+.intro-cols {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px; margin-top: 6px;
+}
+.intro-col { border-top: 3px solid var(--orange); padding-top: 20px; }
+.intro-col p { margin: 0; color: var(--grau-text); font-size: 1.04rem; line-height: 1.75; }
+
+/* ---------- Leistungsblöcke (2 × 2) ---------- */
+.ls-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px; margin-top: 42px;
+}
+.ls-card {
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid #e8eaec; border-radius: 18px;
+  border-top: 3px solid var(--orange);
+  padding: 30px 30px 26px;
+  box-shadow: 0 12px 32px rgba(17,19,21,.05);
+  transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease;
+}
+.ls-card:hover { transform: translateY(-6px); box-shadow: 0 26px 52px rgba(17,19,21,.12); }
+.ls-ico {
+  width: 54px; height: 54px; border-radius: 14px; flex: none;
+  background: #fff1e8; color: var(--orange);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.ls-ico svg { width: 26px; height: 26px; }
+.ls-card h3 { font-size: 1.2rem; margin: 0 0 10px; }
+.ls-card p { margin: 0 0 20px; color: var(--grau-text); line-height: 1.7; }
+.ls-link {
+  margin-top: auto; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 9px;
+  font-weight: 600; color: var(--orange); text-decoration: none;
+}
+.ls-link svg { width: 17px; height: 17px; transition: transform .3s ease; }
+.ls-card:hover .ls-link svg { transform: translateX(4px); }
+
+/* ---------- Regionaler Hinweis ---------- */
+.region-band {
+  background: var(--grau-hell);
+  border-top: 1px solid var(--grau-linie);
+  border-bottom: 1px solid var(--grau-linie);
+  padding: 30px 0;
+}
+.region-inner { display: flex; align-items: center; gap: 20px; max-width: 1000px; }
+.region-ico {
+  width: 48px; height: 48px; flex: none; border-radius: 50%;
+  background: #fff; border: 1px solid var(--grau-linie); color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+}
+.region-ico svg { width: 23px; height: 23px; }
+.region-inner p { margin: 0; color: var(--anthrazit); font-size: 1.02rem; line-height: 1.65; }
+
+/* ---------- Industrie-Block (kompakt, ca. 1/3) ---------- */
+.start-industrie { background: var(--anthrazit); color: #fff; padding: 66px 0; }
+.si-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  gap: 50px; align-items: center;
+}
+.start-industrie h2 { color: #fff; margin: 8px 0 16px; }
+.start-industrie .eyebrow { color: var(--orange); }
+.start-industrie p { color: #c7ccd1; font-size: 1.05rem; line-height: 1.75; margin: 0 0 24px; max-width: 62ch; }
+.start-industrie .btn-secondary { color: #fff; border-color: rgba(255,255,255,.45); }
+.start-industrie .btn-secondary:hover { border-color: #fff; }
+.si-media { border-radius: 18px; overflow: hidden; box-shadow: 0 28px 62px rgba(0,0,0,.38); }
+.si-media img { width: 100%; height: 100%; display: block; object-fit: cover; aspect-ratio: 4 / 3; }
+
+/* =========================================================
+   FAHRZEUGLACKIERUNG
+   ========================================================= */
+.lack-hero {
+  position: relative; overflow: hidden;
+  min-height: 520px; display: flex; align-items: center; padding: 60px 0;
+  background: #16191c url("assets/img/galerie-arbeit-4.jpg") center 40%/cover no-repeat;
+}
+.lack-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,12,14,.82) 0%, rgba(10,12,14,.62) 48%, rgba(10,12,14,.28) 100%);
+}
+.lack-hero .container { position: relative; z-index: 1; }
+.lack-card { max-width: 640px; color: #fff; }
+.lack-card .eyebrow { color: var(--orange); }
+.lack-card h1 { color: #fff; margin: 8px 0 14px; font-size: clamp(1.8rem, 3.3vw, 2.9rem); line-height: 1.12; }
+.lack-card .start-sub { color: #ffb98a; }
+.lack-card p { color: #d7dbdf; font-size: 1.05rem; line-height: 1.72; margin: 0 0 18px; }
+.lack-card .btn-secondary { color: #fff; border-color: rgba(255,255,255,.5); }
+
+/* Leistungsblöcke Lackierung */
+.lack-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px; margin-top: 42px;
+}
+.lack-card-item {
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid #e8eaec; border-radius: 18px; overflow: hidden;
+  box-shadow: 0 12px 32px rgba(17,19,21,.05);
+  transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease;
+}
+.lack-card-item:hover { transform: translateY(-6px); box-shadow: 0 26px 52px rgba(17,19,21,.12); }
+.lack-bild { aspect-ratio: 16 / 9; overflow: hidden; background: var(--grau-hell); }
+.lack-bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lack-text { padding: 26px 28px 28px; border-top: 3px solid var(--orange); }
+.lack-text h2 { font-size: 1.24rem; margin: 0 0 10px; }
+.lack-text p { margin: 0; color: var(--grau-text); line-height: 1.7; }
+
+/* Hervorgehobener Block mit interner Verlinkung */
+.lack-highlight {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 34px;
+  background: var(--anthrazit); color: #fff;
+  border-radius: 18px; padding: 34px 38px;
+  box-shadow: 0 22px 50px rgba(17,19,21,.2);
+  position: relative; overflow: hidden;
+}
+.lack-highlight::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 120% at 88% 50%, rgba(232,98,12,.22), transparent 70%);
+}
+.lack-highlight > * { position: relative; z-index: 1; }
+.lack-highlight h2 { color: #fff; font-size: 1.3rem; margin: 0 0 8px; }
+.lack-highlight p { margin: 0; color: #c7ccd1; line-height: 1.7; max-width: 68ch; }
+.lack-hl-text { flex: 1; min-width: 0; }
+.lack-highlight .btn { flex: none; }
+
+/* =========================================================
+   RESPONSIVE – Startseite & Fahrzeuglackierung
+   ========================================================= */
+@media (max-width: 980px) {
+  .sthero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .si-grid { grid-template-columns: 1fr; gap: 30px; }
+  .si-media { order: -1; }
+}
+@media (max-width: 820px) {
+  .ls-grid, .lack-grid { grid-template-columns: 1fr; }
+  .intro-cols { grid-template-columns: 1fr; gap: 26px; }
+  .lack-highlight { flex-direction: column; align-items: flex-start; gap: 22px; }
+}
+@media (max-width: 560px) {
+  /* Mobil: Fahrzeug-/Unfallbereich bewusst großzügiger, Industrie kompakter */
+  .start-hero { padding: 34px 0 42px; }
+  .start-hero h1 { font-size: clamp(1.7rem, 7.4vw, 2.15rem); }
+  .start-hero p.start-text { font-size: 1rem; }
+  .vn-paar { gap: 10px; }
+  .vn-tag { font-size: .72rem; padding: 5px 12px; }
+  .ls-card { padding: 24px 22px 22px; }
+  .region-band { padding: 24px 0; }
+  .region-inner { gap: 14px; align-items: flex-start; }
+  .region-ico { width: 40px; height: 40px; }
+  .region-inner p { font-size: .96rem; }
+  .start-industrie { padding: 44px 0; }
+  .start-industrie p { font-size: .98rem; margin-bottom: 20px; }
+  .lack-hero { min-height: 440px; }
+  .lack-text { padding: 22px 22px 24px; }
+  .lack-highlight { padding: 26px 24px; }
+}
+
+/* =========================================================
+   UNFALLREPARATUR – Einleitung über dem Schaden-Assistenten
+   ========================================================= */
+.unfall-intro { padding: 54px 0 46px; background: var(--weiss); }
+.unfall-intro h1 {
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  line-height: 1.1;
+  margin: 10px 0 14px;
+}
+.unfall-intro .start-text {
+  color: var(--grau-text); font-size: 1.06rem; line-height: 1.7;
+  margin: 0 0 30px; max-width: 78ch;
+}
+.unfall-intro .intro-cols { margin-top: 0; }
+
+/* Schritt 1 des Assistenten behält die bisherige Optik, obwohl er jetzt eine h2 ist */
+.hs-head h2.hs-titel {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+}
+@media (max-width: 900px) {
+  .hs-head h2.hs-titel { font-size: 1.6rem; }
+}
+@media (max-width: 560px) {
+  .unfall-intro { padding: 34px 0 30px; }
+  .unfall-intro h1 { font-size: clamp(1.7rem, 7.4vw, 2.15rem); }
+  .unfall-intro .start-text { font-size: 1rem; margin-bottom: 24px; }
+}
+
+/* Industrie-Hero: längere H1 braucht mehr Raum, Claim darunter */
+.ind-hero .kar-card { max-width: 640px; }
+.ind-hero .kar-card h1 { font-size: clamp(1.7rem, 2.9vw, 2.5rem); line-height: 1.14; }
+.kar-card .start-sub { color: #ffb98a; margin: 0 0 14px; }
+@media (max-width: 560px) {
+  .ind-hero .kar-card h1 { font-size: clamp(1.55rem, 6.8vw, 1.95rem); }
+}
+
+/* <picture> soll sich wie das Bild selbst verhalten (WebP mit PNG-Rückfall) */
+.vn-bild picture { display: block; }
+
+/* =========================================================
+   ANPASSUNGEN – Footer, Buttons, Hero-Feinschliff
+   ========================================================= */
+
+/* ---------- Footer im gleichen Anthrazit wie Header & Industrie-Block ---------- */
+.site-footer { background: var(--anthrazit); }
+.footer-unten { border-top-color: rgba(255,255,255,.14); color: #9aa0a6; }
+
+/* ---------- Buttons: Farbwechsel beim Überfahren + Glanz-Effekt ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: background-color .28s ease, color .28s ease, border-color .28s ease;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: #fff; color: var(--orange); border-color: var(--orange);
+}
+.btn-secondary:hover, .btn-secondary:focus-visible {
+  background: var(--orange); color: #fff; border-color: var(--orange);
+}
+/* Sekundär-Buttons auf dunklem Grund: gleicher Wechsel, orange Kontur */
+.kar-card .btn-secondary:hover,
+.lack-card .btn-secondary:hover,
+.start-industrie .btn-secondary:hover {
+  background: var(--orange); color: #fff; border-color: var(--orange);
+}
+
+/* Heller Glanz, der diagonal von oben links nach unten rechts wandert */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: -60%; left: 0;
+  width: 42%; height: 220%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.50) 50%, transparent 100%);
+  transform: translateX(-190%) rotate(18deg);
+  animation: btn-glanz 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.btn-secondary::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(232,98,12,.24) 50%, transparent 100%);
+}
+.kar-card .btn-secondary::after,
+.lack-card .btn-secondary::after,
+.start-industrie .btn-secondary::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.40) 50%, transparent 100%);
+}
+@keyframes btn-glanz {
+  0%, 5%  { transform: translateX(-190%) rotate(18deg); }
+  29%     { transform: translateX(330%)  rotate(18deg); }
+  100%    { transform: translateX(330%)  rotate(18deg); }
+}
+/* Versetzter Start, damit die Buttons nacheinander aufblitzen */
+.btn-gruppe .btn:nth-child(2)::after { animation-delay: 1s; }
+.btn-gruppe .btn:nth-child(3)::after { animation-delay: 2s; }
+.btn-gruppe .btn:nth-child(4)::after { animation-delay: 3s; }
+.nav-right .btn::after { animation-delay: .5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::after { animation: none; opacity: 0; }
+}
+
+/* ---------- Startseite: mehr Luft im Hero ---------- */
+.start-hero h1 { margin: 12px 0 24px; }
+.start-sub { margin: 0 0 24px; }
+.start-hero p.start-text { margin: 0 0 30px; }
+
+/* ---------- Zentrierte Abschnitte ---------- */
+.zentriert { text-align: center; }
+.zentriert .eyebrow { justify-content: center; width: auto; }
+.zentriert .eyebrow::after {
+  flex: none; width: 28px; height: 2px;
+  background: var(--orange); border-radius: 2px;
+}
+.zentriert .btn-gruppe { justify-content: center; }
+.zentriert p, .zentriert h2 { margin-left: auto; margin-right: auto; }
+.ind-cta.zentriert { max-width: 860px; margin: 0 auto; }
+.ind-cta.zentriert p { max-width: 74ch; }
+.zentriert .sec-head-left h2 { max-width: none; }
+.zentriert .ind-intro { max-width: 76ch; }
+
+/* ---------- Unfallreparatur: Hero mit Hintergrundbild ---------- */
+.unfall-intro {
+  position: relative; overflow: hidden;
+  min-height: 520px; display: flex; align-items: center;
+  padding: 60px 0;
+  background: #16191c url("assets/img/leistung-instandsetzung.jpg") center 42%/cover no-repeat;
+}
+.unfall-intro::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(10,12,14,.88) 0%, rgba(10,12,14,.70) 46%, rgba(10,12,14,.34) 100%);
+}
+.unfall-intro .container { position: relative; z-index: 1; }
+.unfall-karte { max-width: 660px; }
+.unfall-intro h1 { color: #fff; margin: 12px 0 24px; }
+.unfall-intro .start-sub { color: #ffb98a; margin: 0 0 24px; }
+.unfall-intro .start-text { color: #d7dbdf; max-width: 60ch; margin: 0; }
+
+/* Die zwei Punkte unter den orangen Strichen: eigener heller Abschnitt */
+.unfall-punkte { padding: 54px 0; background: var(--weiss); }
+
+@media (max-width: 780px) {
+  .unfall-intro { min-height: 0; padding: 42px 0 46px; background-position: 62% center; }
+  .unfall-intro::before {
+    background: linear-gradient(180deg, rgba(10,12,14,.82) 0%, rgba(10,12,14,.88) 100%);
+  }
+  .unfall-punkte { padding: 36px 0; }
+}
+
+/* ---------- Industrie-Hero: Text ohne Kasten, wie bei der Fahrzeuglackierung ---------- */
+@media (min-width: 781px) {
+  .ind-hero .kar-card {
+    background: none; border: 0; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    padding: 0; max-width: 620px;
+    margin: 0;                 /* linksbündig statt zentriert */
+  }
+  /* Motiv leicht nach rechts, damit der Text auf ruhigerem Grund liegt */
+  .ind-hero { background-position: 62% center; }
+  .ind-hero::before {
+    background: linear-gradient(90deg, rgba(10,12,14,.88) 0%, rgba(10,12,14,.70) 46%, rgba(10,12,14,.34) 78%, rgba(10,12,14,.14) 100%);
+  }
+}
+
+/* Zuschnitt auf die Lackierpistole statt auf das Werkstück */
+.lack-bild img.bild-rechts { object-position: 84% center; }
+
+/* =========================================================
+   NUR MOBIL (≤ 780 px) – Desktop bleibt unverändert
+   ========================================================= */
+@media (max-width: 780px) {
+
+  /* ---------- Kopfzeile: Logo exakt mittig, CTA deutlich kleiner ---------- */
+  .site-header .container.header-3col {
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; gap: 8px; min-height: 66px;
+  }
+  .header-logo {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    justify-self: auto;
+  }
+  .header-logo img { height: 38px; }
+  .nav-right .btn {
+    font-size: .72rem; font-weight: 700;
+    padding: 7px 11px; border-width: 1.5px; border-radius: 5px;
+  }
+  .nav-right .btn::after { display: none; }
+
+  /* ---------- Kleine, einzeilige Rubrikzeile ---------- */
+  .eyebrow {
+    font-size: .6rem; letter-spacing: .08em; gap: 8px;
+    white-space: nowrap; margin-bottom: 12px;
+  }
+  .eyebrow::before { width: 18px; }
+
+  /* Zentrierte Rubrikzeile bekommt beidseitig einen Strich */
+  .sthero-text .eyebrow,
+  .ueber-hero .eyebrow,
+  section#leistungen:not(.leistungen-sec) .sec-head-left .eyebrow { justify-content: center; width: auto; }
+  .sthero-text .eyebrow::after,
+  .ueber-hero .eyebrow::after,
+  section#leistungen:not(.leistungen-sec) .sec-head-left .eyebrow::after {
+    flex: none; width: 18px; height: 2px;
+    background: var(--orange); border-radius: 2px;
+  }
+
+  /* ---------- Textkürzung auf dem Handy ---------- */
+  .nur-desktop { display: none; }
+
+  /* ---------- Startseite: Hero mittig ---------- */
+  .sthero-text { text-align: center; }
+  .sthero-text .btn-gruppe { justify-content: center; }
+  .start-hero p.start-text { margin-left: auto; margin-right: auto; }
+
+  /* ---------- Startseite: Leistungskopf mittig, Kästen kompakter ---------- */
+  section#leistungen:not(.leistungen-sec) .sec-head-left { text-align: center; }
+  section#leistungen:not(.leistungen-sec) .sec-head-left h2 { max-width: none; }
+  section#leistungen:not(.leistungen-sec) .sec-head-left .lead { margin-left: auto; margin-right: auto; }
+  .ls-grid { gap: 14px; margin-top: 28px; }
+  .ls-card { padding: 20px 18px 18px; border-radius: 14px; }
+  .ls-ico { width: 42px; height: 42px; border-radius: 11px; margin-bottom: 12px; }
+  .ls-ico svg { width: 21px; height: 21px; }
+  .ls-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .ls-card p { font-size: .93rem; line-height: 1.6; margin-bottom: 14px; }
+  .ls-link { font-size: .93rem; }
+
+  /* ---------- Unfallreparatur: kompakterer Hero, mehr Bild sichtbar ---------- */
+  .unfall-intro { min-height: 0; padding: 34px 0 38px; }
+  .unfall-intro h1 { font-size: clamp(1.5rem, 6.4vw, 1.9rem); margin: 6px 0 12px; }
+  .unfall-intro .start-sub { font-size: .96rem; margin: 0 0 12px; }
+  .unfall-intro .start-text { font-size: .94rem; line-height: 1.6; }
+
+  /* ---------- Fahrzeuglackierung: kompakterer Hero ---------- */
+  .lack-hero { min-height: 0; padding: 40px 0 44px; }
+  .lack-card h1 { font-size: clamp(1.45rem, 6.2vw, 1.85rem); margin: 6px 0 12px; }
+  .lack-card .start-sub { font-size: .94rem; margin: 0 0 12px; }
+  .lack-card p { font-size: .94rem; line-height: 1.6; margin-bottom: 16px; }
+
+  /* ---------- Über uns: Einleitung mittig ---------- */
+  .ueber-hero .container { text-align: center; }
+  .ueber-hero .lead { margin-left: auto; margin-right: auto; }
+
+  /* ---------- Leistungsliste: Kasten erscheint direkt an der Leistung ---------- */
+  .lst-layout { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+  .lst-panel.active { min-height: 0; margin: 6px 0 10px; }
+  .lst-detail { min-height: 0; }
+}
+
+/* ---------- Industrielackierung: Bild als Hintergrund hinter dem Text ---------- */
+@media (max-width: 780px) {
+  .ind-hero {
+    display: flex; align-items: center;
+    min-height: 470px;
+    padding: 44px 0 48px;
+    background: #16191c url("assets/img/industrie-hero-mobil.jpg") center center/cover no-repeat;
+  }
+  .ind-hero::before {
+    display: block;
+    background: linear-gradient(180deg, rgba(10,12,14,.66) 0%, rgba(10,12,14,.80) 55%, rgba(10,12,14,.90) 100%);
+  }
+  .ind-hero .container { padding: 0 var(--abstand); max-width: var(--max-breite); }
+  .ind-hero .container::before { display: none; }
+  .ind-hero .kar-card {
+    background: none; border: 0; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    padding: 0; margin: 0; max-width: none; width: auto;
+    border-radius: 0; text-align: left;
+  }
+  .ind-hero .kar-card h1 { font-size: clamp(1.45rem, 6.2vw, 1.85rem); margin: 6px 0 12px; }
+  .ind-hero .kar-card .start-sub { font-size: .94rem; margin: 0 0 12px; }
+  .ind-hero .kar-card .lead { font-size: .94rem; line-height: 1.6; }
+}
+
+/* Kurzfassung des Kopfzeilen-CTA nur auf dem Handy */
+.nur-mobil { display: none; }
+@media (max-width: 780px) { .nur-mobil { display: inline; } }
+
+/* Feinschliff Mobil: kompakterer Kopf-Button, hellere Bildüberlagerung */
+@media (max-width: 780px) {
+  .nav-right .btn { font-size: .67rem; padding: 6px 10px; }
+
+  /* Unfallreparatur: mehr vom Hintergrundbild sichtbar */
+  .unfall-intro::before {
+    background: linear-gradient(180deg, rgba(10,12,14,.55) 0%, rgba(10,12,14,.72) 60%, rgba(10,12,14,.84) 100%);
+  }
+  /* Fahrzeuglackierung: senkrechter Verlauf statt des waagerechten vom Desktop */
+  .lack-hero::before {
+    background: linear-gradient(180deg, rgba(10,12,14,.58) 0%, rgba(10,12,14,.74) 60%, rgba(10,12,14,.86) 100%);
+  }
+  /* Industrielackierung: etwas heller */
+  .ind-hero::before {
+    background: linear-gradient(180deg, rgba(10,12,14,.52) 0%, rgba(10,12,14,.70) 58%, rgba(10,12,14,.84) 100%);
+  }
+}
