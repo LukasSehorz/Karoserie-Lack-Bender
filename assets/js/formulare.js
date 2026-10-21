@@ -60,8 +60,8 @@ var LKB = (function () {
     });
   }
 
-  /* Einfache Formulare (Kontakt, Bewerbung) */
-  document.querySelectorAll('form[data-netlify]:not(.wz-form)').forEach(function (form) {
+  /* Einfache Formulare (Kontakt, Bewerbung). Netlify entfernt data-netlify beim Deploy, daher über name. */
+  document.querySelectorAll('form[name]:not(.wz-form)').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
