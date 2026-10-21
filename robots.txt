@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+
+Sitemap: https://www.jb-color.de/sitemap.xml
