@@ -4,6 +4,26 @@
    Farben laut Leitfaden: Weiß, Anthrazit, Schwarz, Akzent Orange.
    ========================================================= */
 
+/* Open Sans lokal (variable Schrift, 400–800), keine Verbindung zu Google */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/fonts/open-sans-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("assets/fonts/open-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --weiss: #ffffff;
   --anthrazit: #2b2f33;
@@ -897,6 +917,17 @@ body.splash { overflow: hidden; height: 100vh; }
   background: var(--orange); color: #fff; font-size: 2.1rem;
   display: flex; align-items: center; justify-content: center; margin: 0 auto 22px;
 }
+
+/* Formularversand: Danke-Box und Fehlermeldung */
+.form-danke {
+  text-align: center; max-width: 760px; margin-top: 44px; padding: 34px;
+  background: #fff; border: 1px solid #e8eaec; border-radius: 18px;
+}
+.form-danke h3 { margin: 0 0 8px; }
+.form-danke p { margin: 0; color: var(--grau-text); }
+.form-fehler:empty { display: none; }
+.form-fehler { margin: 4px 0 0; color: #b42318; font-weight: 600; }
+.form-fehler a { color: inherit; }
 
 @media (max-width: 680px) {
   .opt-grid { grid-template-columns: repeat(2, 1fr); }

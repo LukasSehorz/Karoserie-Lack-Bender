@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Karriere – Lack & Karosserie Benda in Mühldorf am Inn</title>
   <meta name="description" content="Karriere bei Lack & Karosserie Benda in Mühldorf am Inn. Offene Stellen, moderner Arbeitsplatz, eingespieltes Team – jetzt schnell bewerben.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=44">
+  <link rel="stylesheet" href="styles.css?v=45">
 </head>
 <body>
 
@@ -222,23 +219,25 @@
           <p class="lead">Fülle das Formular aus – wir melden uns schnellstmöglich bei dir zurück.</p>
         </div>
 
-        <form class="kar-form" action="#" method="post">
+        <form class="kar-form" name="bewerbung" method="post" data-netlify="true" netlify-honeypot="bot-field" data-danke="Deine Bewerbung ist bei uns eingegangen. Wir melden uns schnellstmöglich bei dir.">
+          <input type="hidden" name="form-name" value="bewerbung">
+          <p class="hp-feld" hidden><label>Bitte leer lassen: <input name="bot-field"></label></p>
           <div class="reihe">
-            <div class="feld"><label for="k-name">Name</label><input id="k-name" type="text" autocomplete="name"></div>
-            <div class="feld"><label for="k-mail">E-Mail</label><input id="k-mail" type="email" autocomplete="email"></div>
+            <div class="feld"><label for="k-name">Name</label><input id="k-name" name="name" type="text" required autocomplete="name"></div>
+            <div class="feld"><label for="k-mail">E-Mail</label><input id="k-mail" name="email" type="email" autocomplete="email"></div>
           </div>
           <div class="reihe">
-            <div class="feld"><label for="k-tel">Telefon</label><input id="k-tel" type="tel" autocomplete="tel"></div>
-            <div class="feld"><label for="k-err">Beste Erreichbarkeit</label><input id="k-err" type="text" placeholder="z. B. werktags nachmittags"></div>
+            <div class="feld"><label for="k-tel">Telefon</label><input id="k-tel" name="telefon" type="tel" required autocomplete="tel"></div>
+            <div class="feld"><label for="k-err">Beste Erreichbarkeit</label><input id="k-err" name="erreichbarkeit" type="text" placeholder="z. B. werktags nachmittags"></div>
           </div>
           <div class="reihe">
             <div class="feld">
               <label for="k-ausb">Abgeschlossene Ausbildung?</label>
-              <select id="k-ausb"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select>
+              <select id="k-ausb" name="ausbildung"><option value="">Bitte wählen</option><option>Ja</option><option>Nein</option></select>
             </div>
             <div class="feld">
               <label for="k-beruf">Berufsbezeichnung</label>
-              <select id="k-beruf">
+              <select id="k-beruf" name="beruf">
                 <option value="">Bitte wählen</option>
                 <option>Karosserie-/Fahrzeugbaumechaniker/in</option>
                 <option>KFZ-Mechatroniker/in</option>
@@ -250,23 +249,23 @@
           <div class="reihe">
             <div class="feld">
               <label for="k-erf">Berufserfahrung</label>
-              <select id="k-erf"><option value="">Bitte wählen</option><option>bis 1 Jahr</option><option>1–3 Jahre</option><option>mehr als 3 Jahre</option></select>
+              <select id="k-erf" name="erfahrung"><option value="">Bitte wählen</option><option>bis 1 Jahr</option><option>1–3 Jahre</option><option>mehr als 3 Jahre</option></select>
             </div>
             <div class="feld">
               <label for="k-de">Deutschkenntnisse (1–10)</label>
-              <select id="k-de"><option value="">Bitte wählen</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
+              <select id="k-de" name="deutsch"><option value="">Bitte wählen</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
             </div>
           </div>
           <div class="feld">
             <label for="k-eintritt">Möglicher Eintrittstermin</label>
-            <input id="k-eintritt" type="text" placeholder="z. B. ab sofort / Januar 2026">
+            <input id="k-eintritt" name="eintritt" type="text" placeholder="z. B. ab sofort / Januar 2026">
           </div>
           <div class="feld">
             <label for="k-info">Zusätzliche Informationen</label>
-            <textarea id="k-info" rows="4" placeholder="Erzähl uns kurz etwas über dich."></textarea>
+            <textarea id="k-info" name="info" rows="4" placeholder="Erzähl uns kurz etwas über dich."></textarea>
           </div>
           <div class="checkbox-reihe">
-            <input id="k-ds" type="checkbox" required>
+            <input id="k-ds" name="datenschutz" type="checkbox" required>
             <label for="k-ds">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
           </div>
           <div class="btn-gruppe">
@@ -316,6 +315,7 @@
   </footer>
 
 
+  <script src="assets/js/formulare.js?v=1"></script>
   <script>
     (function () {
       var b = document.querySelector('.burger'),

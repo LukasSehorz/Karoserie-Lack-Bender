@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lack & Karosserie Benda – Unfallreparatur, Karosserie & Industrielackierung in Mühldorf am Inn</title>
   <meta name="description" content="Fachbetrieb für Unfallreparatur, Karosserie und Industrielackierung in Mühldorf am Inn. Von der Fahrzeugbesichtigung bis zur fertigen Reparatur – alles aus einer Hand.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=44">
+  <link rel="stylesheet" href="styles.css?v=45">
 </head>
 <body>
 
@@ -188,26 +185,37 @@
                 <div class="wz-summary" id="wzSummary"></div>
               </div>
 
-              <form class="formular wz-form" action="#" method="post">
-                <div class="reihe">
-                  <div class="feld"><label for="w-vorname">Vorname</label><input id="w-vorname" type="text" autocomplete="given-name"></div>
-                  <div class="feld"><label for="w-nachname">Nachname</label><input id="w-nachname" type="text" autocomplete="family-name"></div>
+              <form class="formular wz-form" name="schadenmeldung" method="post" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="schadenmeldung">
+                <p class="hp-feld" hidden><label>Bitte leer lassen: <input name="bot-field"></label></p>
+                <input type="hidden" name="bereich">
+                <input type="hidden" name="unfallart">
+                <input type="hidden" name="schaden">
+                <input type="hidden" name="details">
+                <input type="hidden" name="fahrbereit">
+                <div hidden>
+                  <input type="file" name="foto1"><input type="file" name="foto2"><input type="file" name="foto3">
+                  <input type="file" name="foto4"><input type="file" name="foto5"><input type="file" name="foto6">
                 </div>
                 <div class="reihe">
-                  <div class="feld"><label for="w-tel">Telefonnummer</label><input id="w-tel" type="tel" autocomplete="tel"></div>
-                  <div class="feld"><label for="w-mail">E-Mail</label><input id="w-mail" type="email" autocomplete="email"></div>
+                  <div class="feld"><label for="w-vorname">Vorname</label><input id="w-vorname" name="vorname" type="text" autocomplete="given-name"></div>
+                  <div class="feld"><label for="w-nachname">Nachname</label><input id="w-nachname" name="nachname" type="text" autocomplete="family-name"></div>
+                </div>
+                <div class="reihe">
+                  <div class="feld"><label for="w-tel">Telefonnummer</label><input id="w-tel" name="telefon" type="tel" autocomplete="tel" required></div>
+                  <div class="feld"><label for="w-mail">E-Mail</label><input id="w-mail" name="email" type="email" autocomplete="email"></div>
                 </div>
                 <div class="feld">
                   <span class="wz-flabel">Fotos vom Schaden</span>
                   <label class="dropzone" for="w-fotos" id="dropzone">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="m8 17 4-4 4 4"/><path d="M20 16.7A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/></svg>
                     <span class="dz-main"><b>Fotos auswählen</b> oder hierher ziehen</span>
-                    <small>Mehrere Bilder möglich – das hilft uns bei der Einschätzung.</small>
+                    <small>Bis zu 6 Bilder – das hilft uns bei der Einschätzung.</small>
                   </label>
                   <input id="w-fotos" class="dz-input" type="file" multiple accept="image/*">
                 </div>
                 <div class="checkbox-reihe">
-                  <input id="w-ds" type="checkbox" required>
+                  <input id="w-ds" name="datenschutz" type="checkbox" required>
                   <label for="w-ds">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu.</label>
                 </div>
                 <p class="wz-trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unverbindlich &amp; kostenlos – wir melden uns schnellstmöglich zurück.</p>
@@ -465,7 +473,9 @@
 
           <!-- Kontaktformular rechts -->
           <div class="kontakt-formular">
-            <form class="formular" action="#" method="post">
+            <form class="formular kontakt-form" name="kontakt" method="post" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="kontakt">
+              <p class="hp-feld" hidden><label>Bitte leer lassen: <input name="bot-field"></label></p>
               <div class="reihe">
                 <div class="feld">
                   <label for="k-vorname">Vorname</label>
@@ -478,11 +488,11 @@
               </div>
               <div class="feld">
                 <label for="k-email">E-Mail</label>
-                <input type="email" id="k-email" name="email" autocomplete="email">
+                <input type="email" id="k-email" name="email" autocomplete="email" required>
               </div>
               <div class="feld">
                 <label for="k-nachricht">Nachricht</label>
-                <textarea id="k-nachricht" name="nachricht"></textarea>
+                <textarea id="k-nachricht" name="nachricht" required></textarea>
               </div>
               <div class="checkbox-reihe">
                 <input type="checkbox" id="k-datenschutz" name="datenschutz" required>
@@ -536,6 +546,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/formulare.js?v=1"></script>
   <script>
     (function () {
       var wizard = document.getElementById('wizard');
@@ -655,14 +666,29 @@
         });
       }
 
-      /* Absenden */
+      /* Absenden: an Netlify Forms, Fotos vorher verkleinert (max. 8 MB je Anfrage) */
       var form = wizard.querySelector('.wz-form');
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          wizard.innerHTML = '<div class="wz-done"><div class="wz-check">✓</div>' +
-            '<h2>Vielen Dank – Ihre Anfrage ist eingegangen.</h2>' +
-            '<p class="lead">Wir prüfen Ihre Angaben und melden uns schnellstmöglich bei Ihnen zurück, um einen Termin zur Besichtigung zu vereinbaren.</p></div>';
+          var data = new FormData(form);
+          data.set('bereich', state.area);
+          data.set('unfallart', state.unfallart);
+          data.set('schaden', state.damages.join(', '));
+          data.set('details', state.note);
+          data.set('fahrbereit', state.fahrbereit);
+          var files = Array.prototype.slice.call(fileInput && fileInput.files ? fileInput.files : [], 0, 6);
+          var btn = form.querySelector('button[type="submit"]');
+          LKB.senden(form, btn, function () {
+            return Promise.all(files.map(LKB.verkleinern)).then(function (bilder) {
+              bilder.forEach(function (b, i) { if (b) data.set('foto' + (i + 1), b, 'foto' + (i + 1) + '.jpg'); });
+              return data;
+            });
+          }, function () {
+            wizard.innerHTML = '<div class="wz-done"><div class="wz-check">✓</div>' +
+              '<h2>Vielen Dank – Ihre Anfrage ist eingegangen.</h2>' +
+              '<p class="lead">Wir prüfen Ihre Angaben und melden uns schnellstmöglich bei Ihnen zurück, um einen Termin zur Besichtigung zu vereinbaren.</p></div>';
+          });
         });
       }
     })();
