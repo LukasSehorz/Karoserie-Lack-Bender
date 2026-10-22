@@ -265,7 +265,7 @@
                 <div class="wz-summary" id="wzSummary"></div>
               </div>
 
-              <form class="formular wz-form" name="schadenmeldung" method="post" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+              <form class="formular wz-form" name="schadenmeldung" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="form-name" value="schadenmeldung">
                 <p class="hp-feld" hidden><label>Bitte leer lassen: <input name="bot-field"></label></p>
                 <input type="hidden" name="bereich">
@@ -273,10 +273,6 @@
                 <input type="hidden" name="schaden">
                 <input type="hidden" name="details">
                 <input type="hidden" name="fahrbereit">
-                <div hidden>
-                  <input type="file" name="foto1"><input type="file" name="foto2"><input type="file" name="foto3">
-                  <input type="file" name="foto4"><input type="file" name="foto5"><input type="file" name="foto6">
-                </div>
                 <div class="reihe">
                   <div class="feld"><label for="w-vorname">Vorname</label><input id="w-vorname" name="vorname" type="text" autocomplete="given-name"></div>
                   <div class="feld"><label for="w-nachname">Nachname</label><input id="w-nachname" name="nachname" type="text" autocomplete="family-name"></div>
@@ -553,7 +549,7 @@
 
           <!-- Kontaktformular rechts -->
           <div class="kontakt-formular">
-            <form class="formular kontakt-form" name="kontakt" method="post" data-netlify="true" netlify-honeypot="bot-field">
+            <form class="formular kontakt-form" name="kontakt" method="post">
               <input type="hidden" name="form-name" value="kontakt">
               <p class="hp-feld" hidden><label>Bitte leer lassen: <input name="bot-field"></label></p>
               <div class="reihe">
@@ -629,7 +625,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/formulare.js?v=2"></script>
+  <script src="assets/js/formulare.js?v=3"></script>
   <script>
     (function () {
       var wizard = document.getElementById('wizard');
@@ -749,7 +745,7 @@
         });
       }
 
-      /* Absenden: an Netlify Forms, Fotos vorher verkleinert (max. 8 MB je Anfrage) */
+      /* Absenden: an /api/anfrage (Resend), Fotos vorher verkleinert */
       var form = wizard.querySelector('.wz-form');
       if (form) {
         form.addEventListener('submit', function (e) {
@@ -763,7 +759,7 @@
           var files = Array.prototype.slice.call(fileInput && fileInput.files ? fileInput.files : [], 0, 6);
           var btn = form.querySelector('button[type="submit"]');
           LKB.senden(form, btn, function () {
-            return Promise.all(files.map(LKB.verkleinern)).then(function (bilder) {
+            return LKB.fotosVorbereiten(files).then(function (bilder) {
               bilder.forEach(function (b, i) { if (b) data.set('foto' + (i + 1), b, 'foto' + (i + 1) + '.jpg'); });
               return data;
             });

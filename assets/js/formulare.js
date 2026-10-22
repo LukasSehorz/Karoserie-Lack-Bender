@@ -1,30 +1,57 @@
 /* =========================================================
-   Formulare – Versand über Netlify Forms (Benachrichtigung per E-Mail)
+   Formulare – Versand über /api/anfrage (Netlify-Funktion → Resend → E-Mail)
    ========================================================= */
 var LKB = (function () {
+  var ZIEL = '/api/anfrage';
 
-  /* Foto auf max. 1600 px verkleinern und als JPEG liefern.
-     Kann der Browser das Bild nicht lesen (z. B. HEIC am PC), geht
-     das Original mit, solange es klein genug ist. */
-  function verkleinern(datei) {
+  /* Prüfwert gegen Spam: beim Laden holen. Fehlt er beim Absenden, wird er
+     nachgeholt und 5,5 s gewartet, weil der Server frühere Absendungen
+     als Automat verwirft. */
+  var pruef = null;
+  function pruefwertHolen() {
+    return fetch(ZIEL, { cache: 'no-store' }).then(function (r) { return r.json(); })
+      .then(function (d) { pruef = { t: d.t, geholt: Date.now() }; return pruef; });
+  }
+  function pruefwert() {
+    var frisch = pruef && Date.now() - pruef.geholt < 23 * 3600 * 1000;
+    var bereit = frisch ? Promise.resolve(pruef) : pruefwertHolen();
+    return bereit.then(function (p) {
+      var warten = 5500 - (Date.now() - p.geholt);
+      return new Promise(function (ok) { setTimeout(function () { ok(p.t); }, Math.max(0, warten)); });
+    });
+  }
+  if (document.querySelector('form[name]')) pruefwertHolen().catch(function () {});
+
+  /* Foto verkleinern und als JPEG liefern. Kann der Browser das Bild nicht
+     lesen (z. B. HEIC am PC), geht das Original mit, solange es klein ist. */
+  function verkleinern(datei, max, qualitaet) {
     return new Promise(function (fertig) {
       var url = URL.createObjectURL(datei);
       var img = new Image();
       img.onload = function () {
-        var max = 1600;
         var f = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
         var c = document.createElement('canvas');
         c.width = Math.round(img.naturalWidth * f);
         c.height = Math.round(img.naturalHeight * f);
         c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
         URL.revokeObjectURL(url);
-        c.toBlob(function (b) { fertig(b); }, 'image/jpeg', 0.82);
+        c.toBlob(function (b) { fertig(b); }, 'image/jpeg', qualitaet);
       };
       img.onerror = function () {
         URL.revokeObjectURL(url);
-        fertig(datei.size <= 1200000 ? datei : null);
+        fertig(datei.size <= 900000 ? datei : null);
       };
       img.src = url;
+    });
+  }
+
+  /* Netlify-Funktionen nehmen höchstens 6 MB je Anfrage an. Ziel 3,5 MB für
+     alle Fotos zusammen, sonst ein zweiter, kleinerer Durchgang. */
+  function fotosVorbereiten(dateien) {
+    function summe(liste) { return liste.reduce(function (s, b) { return s + (b ? b.size : 0); }, 0); }
+    return Promise.all(dateien.map(function (d) { return verkleinern(d, 1600, 0.82); })).then(function (bilder) {
+      if (summe(bilder) <= 3500000) return bilder;
+      return Promise.all(dateien.map(function (d) { return verkleinern(d, 1100, 0.7); }));
     });
   }
 
@@ -44,12 +71,10 @@ var LKB = (function () {
     var label = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = 'Wird gesendet …'; }
     meldung(form, '');
-    daten().then(function (fd) {
-      for (var i = 1; i <= 6; i++) {
-        var f = fd.get('foto' + i);
-        if (f && typeof f === 'object' && !f.size) fd.delete('foto' + i);
-      }
-      return fetch('/', { method: 'POST', body: fd });
+    Promise.all([daten(), pruefwert()]).then(function (e) {
+      var fd = e[0];
+      fd.set('pruefwert', e[1]);
+      return fetch(ZIEL, { method: 'POST', body: fd });
     }).then(function (res) {
       if (!res.ok) throw new Error(res.status);
       danach();
@@ -60,7 +85,7 @@ var LKB = (function () {
     });
   }
 
-  /* Einfache Formulare (Kontakt, Bewerbung). Netlify entfernt data-netlify beim Deploy, daher über name. */
+  /* Einfache Formulare (Kontakt, Bewerbung) */
   document.querySelectorAll('form[name]:not(.wz-form)').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -76,5 +101,5 @@ var LKB = (function () {
     });
   });
 
-  return { verkleinern: verkleinern, senden: senden };
+  return { fotosVorbereiten: fotosVorbereiten, senden: senden };
 })();
