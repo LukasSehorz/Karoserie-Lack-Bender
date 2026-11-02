@@ -44,7 +44,7 @@ const FORMULARE = {
     felder: [
       ['name', 'Name'], ['telefon', 'Telefon'], ['email', 'E-Mail'], ['erreichbarkeit', 'Beste Erreichbarkeit'],
       ['ausbildung', 'Abgeschlossene Ausbildung'], ['beruf', 'Berufsbezeichnung'], ['erfahrung', 'Berufserfahrung'],
-      ['deutsch', 'Deutschkenntnisse (1–10)'], ['eintritt', 'Möglicher Eintrittstermin'], ['info', 'Zusätzliche Informationen'],
+      ['deutsch', 'Deutschkenntnisse'], ['eintritt', 'Möglicher Eintrittstermin'], ['info', 'Zusätzliche Informationen'],
     ],
     betreff: (w) => 'Bewerbung: ' + w.name + (w.beruf ? ' (' + w.beruf + ')' : ''),
   },
