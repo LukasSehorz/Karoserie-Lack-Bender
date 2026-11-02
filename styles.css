@@ -1485,6 +1485,8 @@ body.splash { overflow: hidden; height: 100vh; }
 }
 .kar-form textarea { resize: vertical; }
 .kar-form input:focus, .kar-form select:focus, .kar-form textarea:focus { outline: 2px solid var(--orange); border-color: var(--orange); }
+/* Eintrittstermin: langer Beispieltext bleibt auch auf dem Handy ganz sichtbar (nur der Platzhalter, nicht die Eingabe) */
+#k-eintritt::placeholder { font-size: clamp(10.3px, calc(5.1vw - 6.4px), 16px); }
 
 @media (max-width: 900px) {
   .perk-grid { grid-template-columns: repeat(2, 1fr); }
